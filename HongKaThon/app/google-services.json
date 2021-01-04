@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1074397331514",
+    "project_id": "social-distance-d424c",
+    "storage_bucket": "social-distance-d424c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1074397331514:android:61daa8668470828c4df503",
+        "android_client_info": {
+          "package_name": "com.cookandroid.social_distance"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1074397331514-pbd91iokn2orblh32vev5hpb0oedb846.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cookandroid.social_distance",
+            "certificate_hash": "96c35584c60d5bb2edcc6169eb5018f60e6722d4"
+          }
+        },
+        {
+          "client_id": "1074397331514-9987nmiutl4gmbjtg435fm6agrqgh6uk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlVI71OrxO_bVlyX8akKaK5vhKA-MvqDs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1074397331514-9987nmiutl4gmbjtg435fm6agrqgh6uk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
