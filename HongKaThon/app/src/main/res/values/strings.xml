@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Social_Distance</string>
+    <string name="type">Type</string>
+    <string name="filter">Filter</string>
+    <string name="level">Level</string>
+    <string name="infection">Infection</string>
 </resources>
