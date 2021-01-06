@@ -2,5 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/mapFragment"
-        android:title="Item" />
+        android:title="지역별 확진자 수" />
+    <item
+        android:id="@+id/mainFragment"
+        android:title="메인화면" />
 </menu>
