@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
 import com.cookandroid.social_distance.R
+import com.cookandroid.social_distance.Region
 import com.cookandroid.social_distance.singleton.CoronaData
 
 class RegionInformationWidget : AppWidgetProvider() {
@@ -42,10 +43,10 @@ class RegionInformationWidget : AppWidgetProvider() {
         val pending = PendingIntent.getBroadcast(context, 0, intent, 0)
 
         return RemoteViews(context.packageName, R.layout.widget_region_information).apply {
-            setTextViewText(R.id.region, "제주")
-            setTextViewText(R.id.total, CoronaData.getTotalInfection("제주").toString())
-            setTextViewText(R.id.plus, CoronaData.getPlusInfection("제주").toString())
-            setTextViewText(R.id.level, CoronaData.getLevel("제주"))
+            setTextViewText(R.id.region, Region.Jeju.korean)
+            setTextViewText(R.id.total, CoronaData.getTotalInfection(Region.Jeju).toString())
+            setTextViewText(R.id.plus, CoronaData.getPlusInfection(Region.Jeju).toString())
+            setTextViewText(R.id.level, CoronaData.getLevel(Region.Jeju))
             setOnClickPendingIntent(R.id.refresh, pending)
         }
     }

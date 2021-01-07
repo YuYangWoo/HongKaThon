@@ -1,12 +1,13 @@
 package com.cookandroid.social_distance.singleton
 
+import com.cookandroid.social_distance.Region
 import kotlinx.coroutines.*
 import org.jsoup.Jsoup
 
 object CoronaData {
     private val job: Job
-    private val level = HashMap<String, String>()
-    private val infection = HashMap<String, Pair<Int, Int>>()
+    private val level = HashMap<Region, String>()
+    private val infection = HashMap<Region, Pair<Int, Int>>()
 
     init {
         job = CoroutineScope(Dispatchers.IO).launch {
@@ -16,7 +17,7 @@ object CoronaData {
                 val data = element.getElementsByTag("button")
 
                 for (entry in data) {
-                    level[entry.child(0).text()] = entry.child(1).text()
+                    level[Region.getRegion(entry.child(0).text())] = entry.child(1).text()
                 }
             }
 
@@ -28,27 +29,27 @@ object CoronaData {
                 for (entry in data) {
                     val total = entry.child(1).text().replace(",", "").toInt()
                     val plus = entry.child(2).text().replace(",", "").replace("(", "").replace("+", "").replace(")", "").toInt()
-                    infection[entry.child(0).text()] = Pair(total, plus)
+                    infection[Region.getRegion(entry.child(0).text())] = Pair(total, plus)
                 }
             }
         }
     }
 
-    fun getLevel(region: String): String {
+    fun getLevel(region: Region): String {
         return runBlocking {
             job.join()
             level[region] ?: ""
         }
     }
 
-    fun getTotalInfection(region: String): Int {
+    fun getTotalInfection(region: Region): Int {
         return runBlocking {
             job.join()
             infection[region]?.first ?: 0
         }
     }
 
-    fun getPlusInfection(region: String): Int {
+    fun getPlusInfection(region: Region): Int {
         return runBlocking {
             job.join()
             infection[region]?.second ?: 0
