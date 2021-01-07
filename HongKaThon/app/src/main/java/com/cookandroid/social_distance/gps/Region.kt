@@ -1,4 +1,4 @@
-package com.cookandroid.social_distance
+package com.cookandroid.social_distance.gps
 
 enum class Region(val korean: String) {
 
@@ -8,55 +8,55 @@ enum class Region(val korean: String) {
     companion object {
         fun getRegion(name: String): Region {
             return when(name) {
-                "서울" -> {
+                "서울","서울특별시" -> {
                     Seoul
                 }
-                "인천" -> {
+                "인천","인천광역시" -> {
                     Incheon
                 }
-                "경기" -> {
+                "경기","경기도" -> {
                     Gyeonggi
                 }
-                "강원" -> {
+                "강원","강원도" -> {
                     Gangwon
                 }
-                "세종" -> {
+                "세종","세종특별시" -> {
                     Sejong
                 }
-                "충북" -> {
+                "충북","충청북도" -> {
                     Chungcheongbuk
                 }
-                "충남" -> {
+                "충남","충청남도" -> {
                     Chungcheongnam
                 }
-                "대전" -> {
+                "대전","대전광역시" -> {
                     Daejeon
                 }
-                "경북" -> {
+                "경북","경상북도" -> {
                     Gyeongsangbuk
                 }
-                "전북" -> {
+                "전북","전라북도" -> {
                     Jeollabuk
                 }
-                "대구" -> {
+                "대구","대구광역시" -> {
                     Daegu
                 }
-                "전남" -> {
+                "전남","전라남도" -> {
                     Jeollanam
                 }
-                "광주" -> {
+                "광주","광주광역시" -> {
                     Gwanju
                 }
-                "경남" -> {
+                "경남","경상남도" -> {
                     Gyeongsangnam
                 }
-                "울산" -> {
+                "울산","울산광역시" -> {
                     Ulsan
                 }
-                "부산" -> {
+                "부산","부산광역시" -> {
                     Busan
                 }
-                "제주" -> {
+                "제주","제주특별자치도" -> {
                     Jeju
                 }
                 "검역" -> {

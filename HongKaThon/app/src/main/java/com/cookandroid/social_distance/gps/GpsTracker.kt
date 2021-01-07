@@ -1,24 +1,27 @@
-package com.cookandroid.social_distance
+package com.cookandroid.social_distance.gps
 
 import android.Manifest
 import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Location
-import android.location.LocationListener
-import android.location.LocationManager
+import android.location.*
 import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
+import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.cookandroid.social_distance.fragment.MainFragment
+import java.io.IOException
+import java.util.*
 
 
-class GpsTracker(context: Context?) : Service(), LocationListener {
-    private val mContext: Context = context!!
-    private lateinit var location : Location
+class GpsTracker(context: Context) : Service(), LocationListener {
+    private var mContext: Context = context
+    private var location : Location ?= null
     var latitude = 0.0
     var longitude = 0.0
+
     protected lateinit var locationManager: LocationManager
     private fun getLocation(): Location? {
         try {
@@ -51,8 +54,8 @@ class GpsTracker(context: Context?) : Service(), LocationListener {
                         location =
                             locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)!!
                         if (location != null) {
-                            latitude = location.getLatitude()
-                            longitude = location.getLongitude()
+                            latitude = location!!.getLatitude()
+                            longitude = location!!.getLongitude()
                         }
                     }
                 }
@@ -68,8 +71,8 @@ class GpsTracker(context: Context?) : Service(), LocationListener {
                             location =
                                 locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)!!
                             if (location != null) {
-                                latitude = location.getLatitude()
-                                longitude = location.getLongitude()
+                                latitude = location!!.getLatitude()
+                                longitude = location!!.getLongitude()
                             }
                         }
                     }
@@ -84,7 +87,7 @@ class GpsTracker(context: Context?) : Service(), LocationListener {
     @JvmName("getLatitude1")
     fun getLatitude(): Double {
         if (location != null) {
-            latitude = location.latitude
+            latitude = location!!.latitude
         }
         return latitude
     }
@@ -92,9 +95,35 @@ class GpsTracker(context: Context?) : Service(), LocationListener {
     @JvmName("getLongitude1")
     fun getLongitude(): Double {
         if (location != null) {
-            longitude = location.longitude
+            longitude = location!!.longitude
         }
         return longitude
+    }
+    fun getCurrentAddress(latitude: Double, longitude: Double): String {
+
+        //지오코더... GPS를 주소로 변환
+        val geocoder = Geocoder(this, Locale.getDefault())
+        val addresses: List<Address>?
+        addresses = try {
+            geocoder.getFromLocation(
+                latitude,
+                longitude,
+                7
+            )
+        } catch (ioException: IOException) {
+            //네트워크 문제
+            Toast.makeText(this, "지오코더 서비스 사용불가", Toast.LENGTH_LONG).show()
+            return "지오코더 서비스 사용불가"
+        } catch (illegalArgumentException: IllegalArgumentException) {
+            Toast.makeText(this, "잘못된 GPS 좌표", Toast.LENGTH_LONG).show()
+            return "잘못된 GPS 좌표"
+        }
+        if (addresses == null || addresses.isEmpty()) {
+            Toast.makeText(this, "주소 미발견", Toast.LENGTH_LONG).show()
+            return "주소 미발견"
+        }
+        val address: Address = addresses[0]
+        return address.getAddressLine(0).toString().toString() + "\n"
     }
 
     override fun onProviderDisabled(provider: String) {}
@@ -121,4 +150,14 @@ class GpsTracker(context: Context?) : Service(), LocationListener {
     init {
         getLocation()
     }
+
+    fun getArea(): String {
+        val latitude: Double = getLatitude()
+        val longitude: Double = getLongitude()
+        val address = getCurrentAddress(latitude, longitude)
+        val split = address.split(" ")
+        val si =  Region.getRegion(split[1]).korean
+        return si
+    }
+
 }

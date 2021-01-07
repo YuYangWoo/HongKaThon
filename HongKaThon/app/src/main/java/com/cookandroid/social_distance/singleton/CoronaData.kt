@@ -1,6 +1,6 @@
 package com.cookandroid.social_distance.singleton
 
-import com.cookandroid.social_distance.Region
+import com.cookandroid.social_distance.gps.Region
 import kotlinx.coroutines.*
 import org.jsoup.Jsoup
 
