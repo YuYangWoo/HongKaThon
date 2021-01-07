@@ -3,7 +3,6 @@ package com.cookandroid.social_distance
 import android.Manifest
 import android.app.Service
 import android.content.Context
-import android.content.Context.LOCATION_SERVICE
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
@@ -15,18 +14,18 @@ import android.util.Log
 import androidx.core.content.ContextCompat
 
 
-class GpsTracker(context: Context) : Service(), LocationListener {
-    private val mContext: Context
+class GpsTracker(context: Context?) : Service(), LocationListener {
+    private val mContext: Context = context!!
     private lateinit var location : Location
     var latitude = 0.0
     var longitude = 0.0
-    protected var locationManager: LocationManager? = null
-    fun getLocation(): Location? {
+    protected lateinit var locationManager: LocationManager
+    private fun getLocation(): Location? {
         try {
-            locationManager = mContext.getSystemService(LOCATION_SERVICE) as LocationManager?
-            val isGPSEnabled = locationManager!!.isProviderEnabled(LocationManager.GPS_PROVIDER)
+            locationManager = mContext.getSystemService(LOCATION_SERVICE) as LocationManager
+            val isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
             val isNetworkEnabled =
-                locationManager!!.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+                locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
             if (!isGPSEnabled && !isNetworkEnabled) {
             } else {
                 val hasFineLocationPermission = ContextCompat.checkSelfPermission(
@@ -42,7 +41,7 @@ class GpsTracker(context: Context) : Service(), LocationListener {
                 ) {
                 } else return null
                 if (isNetworkEnabled) {
-                    locationManager!!.requestLocationUpdates(
+                    locationManager.requestLocationUpdates(
                         LocationManager.NETWORK_PROVIDER,
                         MIN_TIME_BW_UPDATES,
                         MIN_DISTANCE_CHANGE_FOR_UPDATES.toFloat(),
@@ -50,7 +49,7 @@ class GpsTracker(context: Context) : Service(), LocationListener {
                     )
                     if (locationManager != null) {
                         location =
-                            locationManager!!.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)!!
+                            locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)!!
                         if (location != null) {
                             latitude = location.getLatitude()
                             longitude = location.getLongitude()
@@ -59,7 +58,7 @@ class GpsTracker(context: Context) : Service(), LocationListener {
                 }
                 if (isGPSEnabled) {
                     if (location == null) {
-                        locationManager!!.requestLocationUpdates(
+                        locationManager.requestLocationUpdates(
                             LocationManager.GPS_PROVIDER,
                             MIN_TIME_BW_UPDATES,
                             MIN_DISTANCE_CHANGE_FOR_UPDATES.toFloat(),
@@ -67,7 +66,7 @@ class GpsTracker(context: Context) : Service(), LocationListener {
                         )
                         if (locationManager != null) {
                             location =
-                                locationManager!!.getLastKnownLocation(LocationManager.GPS_PROVIDER)!!
+                                locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)!!
                             if (location != null) {
                                 latitude = location.getLatitude()
                                 longitude = location.getLongitude()
@@ -85,7 +84,7 @@ class GpsTracker(context: Context) : Service(), LocationListener {
     @JvmName("getLatitude1")
     fun getLatitude(): Double {
         if (location != null) {
-            latitude = location.getLatitude()
+            latitude = location.latitude
         }
         return latitude
     }
@@ -93,7 +92,7 @@ class GpsTracker(context: Context) : Service(), LocationListener {
     @JvmName("getLongitude1")
     fun getLongitude(): Double {
         if (location != null) {
-            longitude = location.getLongitude()
+            longitude = location.longitude
         }
         return longitude
     }
@@ -110,7 +109,7 @@ class GpsTracker(context: Context) : Service(), LocationListener {
 
     fun stopUsingGPS() {
         if (locationManager != null) {
-            locationManager!!.removeUpdates(this@GpsTracker)
+            locationManager.removeUpdates(this@GpsTracker)
         }
     }
 
@@ -120,7 +119,6 @@ class GpsTracker(context: Context) : Service(), LocationListener {
     }
 
     init {
-        mContext = context
         getLocation()
     }
 }
