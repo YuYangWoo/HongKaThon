@@ -8,7 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
 import com.cookandroid.social_distance.R
-import com.cookandroid.social_distance.Region
+import com.cookandroid.social_distance.gps.Region
 import com.cookandroid.social_distance.singleton.CoronaData
 
 class RegionInformationWidget : AppWidgetProvider() {

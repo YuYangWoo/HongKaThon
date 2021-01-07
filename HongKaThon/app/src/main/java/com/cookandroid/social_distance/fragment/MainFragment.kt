@@ -15,15 +15,14 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
-import com.cookandroid.social_distance.GpsTracker
+import com.cookandroid.social_distance.gps.GpsTracker
 import com.cookandroid.social_distance.MainActivity
 import com.cookandroid.social_distance.R
 import com.cookandroid.social_distance.base.BaseFragment
 import com.cookandroid.social_distance.databinding.FragmentMainBinding
+import com.cookandroid.social_distance.gps.Region
 import java.io.IOException
 import java.util.*
-import java.util.jar.Manifest
 
 
 class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
@@ -46,17 +45,9 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
             checkRunTimePermission()
         }
         binding.root.findViewById<TextView>(R.id.address).also {
-            gpsTracker = GpsTracker(context)
-            val latitude: Double = gpsTracker.getLatitude()
-            val longitude: Double = gpsTracker.getLongitude()
-            val address = getCurrentAddress(latitude, longitude)
-            val split = address.split(" ")
-            val si = split[1]
-            it.text = "현재 계신 곳은 $si 이고 거리두기 지침은 x단계 입니다. "
-            //  Toast.makeText(context, "현재위치 \n위도 $latitude \n경도 $longitude", Toast.LENGTH_LONG).show()
-
+            gpsTracker = GpsTracker(requireContext())
+            it.text = "현재 계신 곳은 ${gpsTracker.getArea()} 이고 거리두기 지침은 x단계 입니다. "
         }
-
     }
 
     // ActivityCompat.requestPermissions를 사용한 퍼미션 요청의 결과를 리턴
@@ -140,33 +131,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
                 )
             }
         }
-    }
-
-    fun getCurrentAddress(latitude: Double, longitude: Double): String {
-
-        //지오코더... GPS를 주소로 변환
-        val geocoder = Geocoder(context, Locale.getDefault())
-        val addresses: List<Address>?
-        addresses = try {
-            geocoder.getFromLocation(
-                    latitude,
-                    longitude,
-                    7
-            )
-        } catch (ioException: IOException) {
-            //네트워크 문제
-            Toast.makeText(context, "지오코더 서비스 사용불가", Toast.LENGTH_LONG).show()
-            return "지오코더 서비스 사용불가"
-        } catch (illegalArgumentException: IllegalArgumentException) {
-            Toast.makeText(context, "잘못된 GPS 좌표", Toast.LENGTH_LONG).show()
-            return "잘못된 GPS 좌표"
-        }
-        if (addresses == null || addresses.isEmpty()) {
-            Toast.makeText(context, "주소 미발견", Toast.LENGTH_LONG).show()
-            return "주소 미발견"
-        }
-        val address: Address = addresses[0]
-        return address.getAddressLine(0).toString().toString() + "\n"
     }
 
     //여기부터는 GPS 활성화를 위한 메소드들
