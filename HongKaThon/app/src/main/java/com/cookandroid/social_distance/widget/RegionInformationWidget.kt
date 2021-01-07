@@ -44,9 +44,9 @@ class RegionInformationWidget : AppWidgetProvider() {
 
         return RemoteViews(context.packageName, R.layout.widget_region_information).apply {
             setTextViewText(R.id.region, Region.Jeju.korean)
-            setTextViewText(R.id.total, CoronaData.getTotalInfection(Region.Jeju).toString())
-            setTextViewText(R.id.plus, CoronaData.getPlusInfection(Region.Jeju).toString())
-            setTextViewText(R.id.level, CoronaData.getLevel(Region.Jeju))
+            setTextViewText(R.id.total, "${CoronaData.getTotalInfection(Region.Jeju)}명")
+            setTextViewText(R.id.plus, "+${CoronaData.getPlusInfection(Region.Jeju)}명")
+            setTextViewText(R.id.level, "${CoronaData.getLevel(Region.Jeju)}단계")
             setOnClickPendingIntent(R.id.refresh, pending)
         }
     }
