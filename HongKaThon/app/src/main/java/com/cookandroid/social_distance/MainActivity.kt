@@ -37,10 +37,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private val appBarConfiguration by lazy {
         AppBarConfiguration(
-            setOf(R.id.mapFragment),
+            setOf(R.id.mapFragment, R.id.mainFragment),
             binding.drawer
         )
     }
+
+    // BackpressCloseHandler 객체화
+    private val backPressCloseHandler = BackPressCloseHandler(this)
 
     override fun init() {
         super.init()
@@ -68,7 +71,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             if (drawer.isDrawerOpen(navigation)) {
                 drawer.closeDrawer(navigation)
             } else {
-                super.onBackPressed()
+                backPressCloseHandler.onBackPressed();
             }
         }
     }
