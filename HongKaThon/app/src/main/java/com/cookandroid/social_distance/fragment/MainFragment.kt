@@ -50,8 +50,11 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
             val latitude: Double = gpsTracker.getLatitude()
             val longitude: Double = gpsTracker.getLongitude()
             val address = getCurrentAddress(latitude, longitude)
-            it.text = address
-            Toast.makeText(context, "현재위치 \n위도 $latitude \n경도 $longitude", Toast.LENGTH_LONG).show()
+            val split = address.split(" ")
+            val si = split[1]
+            it.text = "현재 계신 곳은 $si 이고 거리두기 지침은 x단계 입니다. "
+          //  Toast.makeText(context, "현재위치 \n위도 $latitude \n경도 $longitude", Toast.LENGTH_LONG).show()
+
         }
 
     }
