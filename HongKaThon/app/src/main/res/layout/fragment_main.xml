@@ -9,16 +9,18 @@
             name="main"
             type="com.cookandroid.social_distance.fragment.MainFragment" />
     </data>
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cstLy"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".fragment.MainFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="150dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.2"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,4 +38,5 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
 </layout>

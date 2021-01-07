@@ -16,7 +16,7 @@ import androidx.core.content.ContextCompat
 
 class GpsTracker(context: Context?) : Service(), LocationListener {
     private val mContext: Context = context!!
-    private lateinit var location : Location
+    private var location : Location ?= null
     var latitude = 0.0
     var longitude = 0.0
     protected lateinit var locationManager: LocationManager
@@ -51,8 +51,8 @@ class GpsTracker(context: Context?) : Service(), LocationListener {
                         location =
                             locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)!!
                         if (location != null) {
-                            latitude = location.getLatitude()
-                            longitude = location.getLongitude()
+                            latitude = location!!.getLatitude()
+                            longitude = location!!.getLongitude()
                         }
                     }
                 }
@@ -68,8 +68,8 @@ class GpsTracker(context: Context?) : Service(), LocationListener {
                             location =
                                 locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)!!
                             if (location != null) {
-                                latitude = location.getLatitude()
-                                longitude = location.getLongitude()
+                                latitude = location!!.getLatitude()
+                                longitude = location!!.getLongitude()
                             }
                         }
                     }
@@ -84,7 +84,7 @@ class GpsTracker(context: Context?) : Service(), LocationListener {
     @JvmName("getLatitude1")
     fun getLatitude(): Double {
         if (location != null) {
-            latitude = location.latitude
+            latitude = location!!.latitude
         }
         return latitude
     }
@@ -92,7 +92,7 @@ class GpsTracker(context: Context?) : Service(), LocationListener {
     @JvmName("getLongitude1")
     fun getLongitude(): Double {
         if (location != null) {
-            longitude = location.longitude
+            longitude = location!!.longitude
         }
         return longitude
     }

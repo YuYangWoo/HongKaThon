@@ -53,15 +53,13 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
             val split = address.split(" ")
             val si = split[1]
             it.text = "현재 계신 곳은 $si 이고 거리두기 지침은 x단계 입니다. "
-          //  Toast.makeText(context, "현재위치 \n위도 $latitude \n경도 $longitude", Toast.LENGTH_LONG).show()
+            //  Toast.makeText(context, "현재위치 \n위도 $latitude \n경도 $longitude", Toast.LENGTH_LONG).show()
 
         }
 
     }
 
-    /*
-    * ActivityCompat.requestPermissions를 사용한 퍼미션 요청의 결과를 리턴
-    */
+    // ActivityCompat.requestPermissions를 사용한 퍼미션 요청의 결과를 리턴
     override fun onRequestPermissionsResult(
             permsRequestCode: Int,
             permissions: Array<String>,
