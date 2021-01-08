@@ -46,7 +46,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
         }
         binding.root.findViewById<TextView>(R.id.address).also {
             gpsTracker = GpsTracker(requireContext())
-            it.text = "현재 계신 곳은 ${gpsTracker.getArea()} 이고 거리두기 지침은 x단계 입니다. "
+            it.text = "현재 계신 곳은 ${gpsTracker.getArea().korean} 이고 거리두기 지침은 x단계 입니다. "
         }
     }
 

@@ -151,12 +151,12 @@ class GpsTracker(context: Context) : Service(), LocationListener {
         getLocation()
     }
 
-    fun getArea(): String {
+    fun getArea(): Region {
         val latitude: Double = getLatitude()
         val longitude: Double = getLongitude()
         val address = getCurrentAddress(latitude, longitude)
         val split = address.split(" ")
-        val si =  Region.getRegion(split[1]).korean
+        val si =  Region.getRegion(split[1])
         return si
     }
 
