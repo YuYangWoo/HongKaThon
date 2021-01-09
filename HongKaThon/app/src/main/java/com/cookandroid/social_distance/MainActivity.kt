@@ -31,6 +31,7 @@ import java.util.*
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
+
     private val navController by lazy {
         (supportFragmentManager.findFragmentById(R.id.fragment) as NavHostFragment).navController
     }

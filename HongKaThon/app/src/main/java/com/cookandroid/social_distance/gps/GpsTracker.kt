@@ -126,6 +126,7 @@ class GpsTracker(context: Context) : Service(), LocationListener {
         return address.getAddressLine(0).toString().toString() + "\n"
     }
 
+
     override fun onProviderDisabled(provider: String) {}
     override fun onProviderEnabled(provider: String) {}
     override fun onLocationChanged(p0: Location) {
