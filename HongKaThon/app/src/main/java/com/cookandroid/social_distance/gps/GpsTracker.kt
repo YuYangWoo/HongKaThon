@@ -102,7 +102,7 @@ class GpsTracker(context: Context) : Service(), LocationListener {
     fun getCurrentAddress(latitude: Double, longitude: Double): String {
 
         //지오코더... GPS를 주소로 변환
-        val geocoder = Geocoder(this, Locale.getDefault())
+        val geocoder = Geocoder(mContext, Locale.getDefault())
         val addresses: List<Address>?
         addresses = try {
             geocoder.getFromLocation(
@@ -112,14 +112,14 @@ class GpsTracker(context: Context) : Service(), LocationListener {
             )
         } catch (ioException: IOException) {
             //네트워크 문제
-            Toast.makeText(this, "지오코더 서비스 사용불가", Toast.LENGTH_LONG).show()
+            Toast.makeText(mContext, "지오코더 서비스 사용불가", Toast.LENGTH_LONG).show()
             return "지오코더 서비스 사용불가"
         } catch (illegalArgumentException: IllegalArgumentException) {
-            Toast.makeText(this, "잘못된 GPS 좌표", Toast.LENGTH_LONG).show()
+            Toast.makeText(mContext, "잘못된 GPS 좌표", Toast.LENGTH_LONG).show()
             return "잘못된 GPS 좌표"
         }
         if (addresses == null || addresses.isEmpty()) {
-            Toast.makeText(this, "주소 미발견", Toast.LENGTH_LONG).show()
+            Toast.makeText(mContext, "주소 미발견", Toast.LENGTH_LONG).show()
             return "주소 미발견"
         }
         val address: Address = addresses[0]
