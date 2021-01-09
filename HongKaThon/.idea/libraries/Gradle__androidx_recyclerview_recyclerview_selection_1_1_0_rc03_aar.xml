@@ -4,9 +4,9 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/df212d3ad9b1844c578025886983ae62/recyclerview-selection-1.1.0-rc03/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/df212d3ad9b1844c578025886983ae62/recyclerview-selection-1.1.0-rc03/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/df212d3ad9b1844c578025886983ae62/recyclerview-selection-1.1.0-rc03/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/df212d3ad9b1844c578025886983ae62/recyclerview-selection-1.1.0-rc03/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/df212d3ad9b1844c578025886983ae62/recyclerview-selection-1.1.0-rc03/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

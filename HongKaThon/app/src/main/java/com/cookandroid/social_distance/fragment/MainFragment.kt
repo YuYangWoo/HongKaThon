@@ -6,8 +6,6 @@ import android.content.Context.LOCATION_SERVICE
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Address
-import android.location.Geocoder
 import android.location.LocationManager
 import android.provider.Settings
 import android.util.Log
@@ -15,27 +13,26 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.cookandroid.social_distance.AreaFactory
 import com.cookandroid.social_distance.gps.GpsTracker
 import com.cookandroid.social_distance.MainActivity
 import com.cookandroid.social_distance.R
 import com.cookandroid.social_distance.base.BaseFragment
 import com.cookandroid.social_distance.databinding.FragmentMainBinding
-import com.cookandroid.social_distance.gps.Region
-import java.io.IOException
-import java.util.*
 
 
 class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
+    var areaList = AreaFactory.areaList
     private lateinit var gpsTracker: GpsTracker
     var REQUIRED_PERMISSIONS = arrayOf(
             android.Manifest.permission.ACCESS_FINE_LOCATION,
             android.Manifest.permission.ACCESS_COARSE_LOCATION
     )
-
     override fun init() {
         super.init()
         check()
+
     }
 
     private fun check() {
@@ -46,7 +43,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
         }
         binding.root.findViewById<TextView>(R.id.address).also {
             gpsTracker = GpsTracker(requireContext())
-            it.text = "현재 계신 곳은 ${gpsTracker.getArea()} 이고 거리두기 지침은 x단계 입니다. "
+            it.text = "현재 계신 곳은 ${gpsTracker.getArea().korean} 이고 거리두기 지침은 x단계 입니다. "
         }
     }
 

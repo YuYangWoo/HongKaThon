@@ -1,20 +1,21 @@
 {
   "project_info": {
-    "project_number": "1074397331514",
-    "project_id": "social-distance-d424c",
-    "storage_bucket": "social-distance-d424c.appspot.com"
+    "project_number": "772922442562",
+    "firebase_url": "https://hhhh-3f138-default-rtdb.firebaseio.com",
+    "project_id": "hhhh-3f138",
+    "storage_bucket": "hhhh-3f138.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1074397331514:android:61daa8668470828c4df503",
+        "mobilesdk_app_id": "1:772922442562:android:7bbcc8786984c79e353edb",
         "android_client_info": {
           "package_name": "com.cookandroid.social_distance"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1074397331514-pbd91iokn2orblh32vev5hpb0oedb846.apps.googleusercontent.com",
+          "client_id": "772922442562-rioo6004d1qn6n82m9usi28khtc7mgg8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.cookandroid.social_distance",
@@ -22,20 +23,57 @@
           }
         },
         {
-          "client_id": "1074397331514-9987nmiutl4gmbjtg435fm6agrqgh6uk.apps.googleusercontent.com",
+          "client_id": "772922442562-o47d7e27bie7omkahegmgpvt02aubq53.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDlVI71OrxO_bVlyX8akKaK5vhKA-MvqDs"
+          "current_key": "AIzaSyArNcCGHZVdELI-GRrcYaOEWRJbB1LxWTE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1074397331514-9987nmiutl4gmbjtg435fm6agrqgh6uk.apps.googleusercontent.com",
+              "client_id": "772922442562-o47d7e27bie7omkahegmgpvt02aubq53.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:772922442562:android:2076bb43a37ee596353edb",
+        "android_client_info": {
+          "package_name": "com.cookandroid.society_distance"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "772922442562-77v71gblo81cc6a23fl0nc6v317afunk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cookandroid.society_distance",
+            "certificate_hash": "96c35584c60d5bb2edcc6169eb5018f60e6722d4"
+          }
+        },
+        {
+          "client_id": "772922442562-o47d7e27bie7omkahegmgpvt02aubq53.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArNcCGHZVdELI-GRrcYaOEWRJbB1LxWTE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "772922442562-o47d7e27bie7omkahegmgpvt02aubq53.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
