@@ -7,7 +7,9 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
+import android.widget.Toast
 import com.cookandroid.social_distance.R
+import com.cookandroid.social_distance.gps.GpsTracker
 import com.cookandroid.social_distance.gps.Region
 import com.cookandroid.social_distance.singleton.CoronaData
 
@@ -20,6 +22,7 @@ class RegionInformationWidget : AppWidgetProvider() {
         super.onReceive(context, intent)
         when(intent.action) {
             ACTION_REFRESH -> {
+                Toast.makeText(context, "Update", Toast.LENGTH_SHORT).show()
                 update(context, AppWidgetManager.getInstance(context), ComponentName(context, RegionInformationWidget::class.java))
             }
         }
@@ -43,10 +46,12 @@ class RegionInformationWidget : AppWidgetProvider() {
         val pending = PendingIntent.getBroadcast(context, 0, intent, 0)
 
         return RemoteViews(context.packageName, R.layout.widget_region_information).apply {
-            setTextViewText(R.id.region, Region.Jeju.korean)
-            setTextViewText(R.id.total, "${CoronaData.getTotalInfection(Region.Jeju)}명")
-            setTextViewText(R.id.plus, "+${CoronaData.getPlusInfection(Region.Jeju)}명")
-            setTextViewText(R.id.level, "${CoronaData.getLevel(Region.Jeju)}단계")
+            val region = GpsTracker(context).getArea()
+
+            setTextViewText(R.id.region, region.korean)
+            setTextViewText(R.id.total, "${CoronaData.getTotalInfection(region)}명")
+            setTextViewText(R.id.plus, "+${CoronaData.getPlusInfection(region)}명")
+            setTextViewText(R.id.level, "${CoronaData.getLevel(region)}단계")
             setOnClickPendingIntent(R.id.refresh, pending)
         }
     }
