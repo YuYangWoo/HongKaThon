@@ -1,11 +1,13 @@
 package com.cookandroid.social_distance
 
-class AreaItem(
-    var img : String ?= null,
-    var name: String ?= null,
-    var one: String ?= null,
-    var onedotfive: String ?= null,
-    var threestep: String ?= null,
-    var twostep: String ?= null,
-    var twodotfivestep: String ?= null
-)
+data class AreaItem(
+    var img : String,
+    var name: String ,
+    var one: String ,
+    var onedotfive: String,
+    var threestep: String ,
+    var twostep: String ,
+    var twodotfivestep: String
+) {
+    constructor() : this("", "", "", "", "", "", "")
+}

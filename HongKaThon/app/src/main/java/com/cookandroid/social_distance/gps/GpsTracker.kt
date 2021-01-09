@@ -39,8 +39,13 @@ class GpsTracker(context: Context) : Service(), LocationListener {
                     mContext,
                     Manifest.permission.ACCESS_COARSE_LOCATION
                 )
+                val hasBackgroundLocationPermission = ContextCompat.checkSelfPermission(
+                    mContext,
+                    android.Manifest.permission.ACCESS_COARSE_LOCATION
+                )
                 if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED &&
-                    hasCoarseLocationPermission == PackageManager.PERMISSION_GRANTED
+                    hasCoarseLocationPermission == PackageManager.PERMISSION_GRANTED &&
+                            hasBackgroundLocationPermission == PackageManager.PERMISSION_GRANTED
                 ) {
                 } else return null
                 if (isNetworkEnabled) {

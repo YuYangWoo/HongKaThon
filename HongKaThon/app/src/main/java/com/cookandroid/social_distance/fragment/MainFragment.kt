@@ -27,7 +27,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
     private lateinit var gpsTracker: GpsTracker
     var REQUIRED_PERMISSIONS = arrayOf(
             android.Manifest.permission.ACCESS_FINE_LOCATION,
-            android.Manifest.permission.ACCESS_COARSE_LOCATION
+            android.Manifest.permission.ACCESS_COARSE_LOCATION,
+    android.Manifest.permission.ACCESS_BACKGROUND_LOCATION
     )
     override fun init() {
         super.init()
@@ -71,7 +72,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
             } else {
                 // 거부한 퍼미션이 있다면 앱을 사용할 수 없는 이유를 설명해주고 앱을 종료합니다.2 가지 경우가 있습니다.
                 if (ActivityCompat.shouldShowRequestPermissionRationale(context as Activity, REQUIRED_PERMISSIONS[0])
-                        || ActivityCompat.shouldShowRequestPermissionRationale(context as Activity, REQUIRED_PERMISSIONS[1])) {
+                        || ActivityCompat.shouldShowRequestPermissionRationale(context as Activity, REQUIRED_PERMISSIONS[1])
+                    || ActivityCompat.shouldShowRequestPermissionRationale(context as Activity, REQUIRED_PERMISSIONS[2])) {
                     Toast.makeText(context, "퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요.", Toast.LENGTH_LONG).show()
                     MainActivity().finish()
                 } else {
@@ -93,8 +95,13 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
                 requireContext(),
                 android.Manifest.permission.ACCESS_COARSE_LOCATION
         )
+        val hasBackgroundLocationPermission = ContextCompat.checkSelfPermission(
+            requireContext(),
+            android.Manifest.permission.ACCESS_COARSE_LOCATION
+        )
         if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED &&
-                hasCoarseLocationPermission == PackageManager.PERMISSION_GRANTED
+                hasCoarseLocationPermission == PackageManager.PERMISSION_GRANTED &&
+            hasBackgroundLocationPermission == PackageManager.PERMISSION_GRANTED
         ) {
 
             // 2. 이미 퍼미션을 가지고 있다면

@@ -11,6 +11,7 @@ class SplashActivity : AppCompatActivity() {
     private val MY_REQUEST_CODE = 100
     private val splashTime:Long = 2000
 
+    var areaList = AreaFactory.areaList
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
