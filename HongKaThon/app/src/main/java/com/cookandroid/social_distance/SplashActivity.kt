@@ -107,7 +107,11 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             hasCoarseLocationPermission == PackageManager.PERMISSION_GRANTED &&
             hasBackgroundLocationPermission == PackageManager.PERMISSION_GRANTED
         ) {
-
+            // 2초 지나고 화면 전환
+            Handler().postDelayed({
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            },splashTime)
             // 2. 이미 퍼미션을 가지고 있다면
             // ( 안드로이드 6.0 이하 버전은 런타임 퍼미션이 필요없기 때문에 이미 허용된 걸로 인식합니다.)
 
