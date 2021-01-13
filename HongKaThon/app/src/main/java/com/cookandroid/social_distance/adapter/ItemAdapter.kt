@@ -2,8 +2,10 @@ package com.cookandroid.social_distance.adapter
 
 import android.content.ClipData
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.cookandroid.social_distance.AreaItem
 import com.cookandroid.social_distance.databinding.HolderListBinding
@@ -27,5 +29,11 @@ class ItemAdapter(private val context: Context) : RecyclerView.Adapter<ItemAdapt
             fun onBind(data: AreaItem) {
                 binding.main = data
             }
+
+        init {
+            binding.root.setOnClickListener {
+                Log.d("test", binding.main!!.name)
+            }
+        }
     }
 }

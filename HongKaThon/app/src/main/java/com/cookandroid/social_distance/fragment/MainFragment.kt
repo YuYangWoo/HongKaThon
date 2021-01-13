@@ -24,6 +24,8 @@ import com.cookandroid.social_distance.R
 import com.cookandroid.social_distance.adapter.ItemAdapter
 import com.cookandroid.social_distance.base.BaseFragment
 import com.cookandroid.social_distance.databinding.FragmentMainBinding
+import com.cookandroid.social_distance.singleton.CoronaData
+import kotlinx.android.synthetic.main.fragment_main.*
 
 
 class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
@@ -32,10 +34,15 @@ private lateinit var gpsTracker:GpsTracker
         super.init()
         binding.root.findViewById<TextView>(R.id.address).also {
             gpsTracker = GpsTracker(requireContext())
-            it.text = "현재 계신 곳은 ${gpsTracker.getArea().korean} 이고 거리두기 지침은 x단계 입니다. "
+            it.text = "현재 계신 곳은 ${gpsTracker.getArea().korean} 이고 거리두기 지침은 ${CoronaData.getLevel(gpsTracker.getArea())}단계 입니다. "
         }
+
         setRecyclerView()
+        btn1.setOnClickListener {
+
+        }
     }
+
     fun setRecyclerView() {
         val itemAdapter = ItemAdapter(requireContext())
         binding.recyclerMain.apply {
@@ -44,8 +51,8 @@ private lateinit var gpsTracker:GpsTracker
         }
         itemAdapter.data = AreaFactory.areaList
         itemAdapter.notifyDataSetChanged()
-
     }
+
 }
 
 
