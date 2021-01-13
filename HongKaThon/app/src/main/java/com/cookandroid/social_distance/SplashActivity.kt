@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.provider.Settings
 import android.util.Log
 import android.widget.TextView
@@ -67,7 +68,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             }
             if (check_result) {
                 // 2초 지나고 화면 전환
-                Handler().postDelayed({
+                Handler(Looper.getMainLooper()).postDelayed({
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 },splashTime)

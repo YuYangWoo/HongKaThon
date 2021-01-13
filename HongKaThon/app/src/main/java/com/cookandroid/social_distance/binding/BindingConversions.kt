@@ -5,6 +5,7 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 
 object BindingConversions {
+
     @BindingAdapter("imageUrl")
     @JvmStatic
     fun loadImage(imageView: ImageView, url: String) {
