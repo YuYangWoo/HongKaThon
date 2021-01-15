@@ -27,18 +27,40 @@ class ItemDialog : BaseDialog<DialogItemBinding>(R.layout.dialog_item) {
         super.init()
         binding.dialog = this
         itemName = args.Name
-        Log.d("test", itemName)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+         btn()
+    }
+
+    private fun btn() {
         binding.btnOne.setOnClickListener {
             level = binding.btnOne.text.toString()
             var action = ItemDialogDirections.actionItemDialogToInformationFragment(level, itemName)
             getFragmentNavController(R.id.fragment)!!.navigate(action)
         }
+        binding.btnOneFive.setOnClickListener {
+            level = binding.btnOneFive.text.toString()
+            var action = ItemDialogDirections.actionItemDialogToInformationFragment(level, itemName)
+            getFragmentNavController(R.id.fragment)!!.navigate(action)
+        }
+        binding.btnTwo.setOnClickListener {
+            level = binding.btnTwo.text.toString()
+            var action = ItemDialogDirections.actionItemDialogToInformationFragment(level, itemName)
+            getFragmentNavController(R.id.fragment)!!.navigate(action)
+        }
+        binding.btnTwoFive.setOnClickListener {
+            level = binding.btnTwoFive.text.toString()
+            var action = ItemDialogDirections.actionItemDialogToInformationFragment(level, itemName)
+            getFragmentNavController(R.id.fragment)!!.navigate(action)
+        }
+        binding.btnThree.setOnClickListener {
+            level = binding.btnThree.text.toString()
+            var action = ItemDialogDirections.actionItemDialogToInformationFragment(level, itemName)
+            getFragmentNavController(R.id.fragment)!!.navigate(action)
+        }
     }
-
     fun Fragment.getFragmentNavController(@IdRes id: Int) = activity?.let {
         return@let Navigation.findNavController(it, id)
     }
