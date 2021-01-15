@@ -1,5 +1,6 @@
 package com.cookandroid.social_distance.adapter
 
+import android.app.ProgressDialog.show
 import android.content.ClipData
 import android.content.Context
 import android.util.Log
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.cookandroid.social_distance.AreaItem
 import com.cookandroid.social_distance.databinding.HolderListBinding
+import com.cookandroid.social_distance.dialog.ItemDialog
 
 class ItemAdapter(private val context: Context) : RecyclerView.Adapter<ItemAdapter.ListViewHolder>() {
     var data = ArrayList<AreaItem>()
@@ -32,7 +34,7 @@ class ItemAdapter(private val context: Context) : RecyclerView.Adapter<ItemAdapt
 
         init {
             binding.root.setOnClickListener {
-                Log.d("test", binding.main!!.name)
+            ItemDialog(itemView.context).show()
             }
         }
     }

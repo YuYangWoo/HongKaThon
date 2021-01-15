@@ -38,9 +38,7 @@ private lateinit var gpsTracker:GpsTracker
         }
 
         setRecyclerView()
-        btn1.setOnClickListener {
 
-        }
     }
 
     fun setRecyclerView() {
