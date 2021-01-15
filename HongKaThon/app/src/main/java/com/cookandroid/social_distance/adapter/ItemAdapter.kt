@@ -40,7 +40,6 @@ class ItemAdapter constructor(): RecyclerView.Adapter<ItemAdapter.ListViewHolder
             }
 
         init {
-
             binding.root.setOnClickListener {
                 var name = binding.main!!.name
                 var action = MainFragmentDirections.actionMainFragmentToItemDialog(name)
