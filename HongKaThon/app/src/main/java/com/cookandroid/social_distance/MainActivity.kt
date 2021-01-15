@@ -24,6 +24,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.cookandroid.social_distance.adapter.ItemAdapter
 import com.cookandroid.social_distance.base.BaseActivity
 import com.cookandroid.social_distance.databinding.ActivityMainBinding
 import java.io.IOException
@@ -38,7 +39,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private val appBarConfiguration by lazy {
         AppBarConfiguration(
-            setOf(R.id.mapFragment, R.id.mainFragment),
+            setOf(R.id.mapFragment, R.id.mainFragment, R.id.itemDialog, R.id.informationFragment),
             binding.drawer
         )
     }

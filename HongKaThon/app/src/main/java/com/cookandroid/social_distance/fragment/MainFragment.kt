@@ -16,6 +16,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.GridLayoutManager
 import com.cookandroid.social_distance.AreaFactory
 import com.cookandroid.social_distance.gps.GpsTracker
@@ -24,6 +26,7 @@ import com.cookandroid.social_distance.R
 import com.cookandroid.social_distance.adapter.ItemAdapter
 import com.cookandroid.social_distance.base.BaseFragment
 import com.cookandroid.social_distance.databinding.FragmentMainBinding
+import com.cookandroid.social_distance.dialog.ItemDialog
 import com.cookandroid.social_distance.singleton.CoronaData
 import kotlinx.android.synthetic.main.fragment_main.*
 
@@ -38,9 +41,7 @@ private lateinit var gpsTracker:GpsTracker
         }
 
         setRecyclerView()
-        btn1.setOnClickListener {
 
-        }
     }
 
     fun setRecyclerView() {
