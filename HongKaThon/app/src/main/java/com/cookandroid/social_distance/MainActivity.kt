@@ -39,7 +39,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private val appBarConfiguration by lazy {
         AppBarConfiguration(
-            setOf(R.id.mapFragment, R.id.mainFragment),
+            setOf(R.id.mapFragment, R.id.mainFragment, R.id.itemDialog, R.id.informationFragment),
             binding.drawer
         )
     }

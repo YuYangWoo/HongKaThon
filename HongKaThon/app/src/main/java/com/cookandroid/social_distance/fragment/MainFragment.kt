@@ -45,7 +45,7 @@ private lateinit var gpsTracker:GpsTracker
     }
 
     fun setRecyclerView() {
-        val itemAdapter = ItemAdapter(requireContext(), activity?.supportFragmentManager!!)
+        val itemAdapter = ItemAdapter(requireContext())
         binding.recyclerMain.apply {
             layoutManager = GridLayoutManager(context, 4)
             adapter = itemAdapter

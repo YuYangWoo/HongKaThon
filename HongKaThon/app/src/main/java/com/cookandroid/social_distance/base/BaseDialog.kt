@@ -11,7 +11,7 @@ import androidx.databinding.DataBindingUtil.setContentView
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
 
-abstract class BaseDialog<T : ViewDataBinding>(context: Context, val layoutId: Int) : DialogFragment() {
+abstract class BaseDialog<T : ViewDataBinding>(val layoutId: Int) : DialogFragment() {
     protected lateinit var binding: T
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

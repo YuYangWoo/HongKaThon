@@ -17,5 +17,33 @@
         <action
             android:id="@+id/action_mainFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_itemDialog"
+            app:destination="@id/itemDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/itemDialog"
+        android:name="com.cookandroid.social_distance.dialog.ItemDialog"
+        android:label="ItemDialog" >
+        <action
+            android:id="@+id/action_itemDialog_to_informationFragment"
+            app:destination="@id/informationFragment" />
+        <argument
+            android:name="Name"
+            app:argType="string"
+            android:defaultValue='""' />
+    </dialog>
+    <fragment
+        android:id="@+id/informationFragment"
+        android:name="com.cookandroid.social_distance.fragment.InformationFragment"
+        android:label="상세정보">
+        <argument
+            android:name="level"
+            android:defaultValue='""'
+            app:argType="string" />
+        <argument
+            android:name="name"
+            android:defaultValue='""'
+            app:argType="string" />
     </fragment>
 </navigation>
