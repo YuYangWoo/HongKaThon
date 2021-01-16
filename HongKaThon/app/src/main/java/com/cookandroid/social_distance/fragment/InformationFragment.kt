@@ -2,7 +2,6 @@ package com.cookandroid.social_distance.fragment
 
 import android.util.Log
 import androidx.navigation.fragment.navArgs
-import com.cookandroid.social_distance.AreaFactory
 import com.cookandroid.social_distance.R
 import com.cookandroid.social_distance.SplashActivity
 import com.cookandroid.social_distance.base.BaseFragment
