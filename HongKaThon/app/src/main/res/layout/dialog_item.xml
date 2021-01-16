@@ -10,40 +10,53 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+
+    <TextView
+        style="@style/BaseText"
+        android:layout_width="270dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="center"
+        android:text="거리지침 단계를 선택해주세요."></TextView>
+
     <Button
         android:id="@+id/btnOne"
+        style="@style/BaseText"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        style="@style/BaseText"
-        android:text = "1단계">
-    </Button>
+        android:layout_gravity="center"
+        android:text="1단계"></Button>
+
     <Button
         android:id="@+id/btnOneFive"
+        style="@style/BaseText"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        style="@style/BaseText"
-        android:text = "1.5단계">
-    </Button>
+        android:layout_gravity="center"
+        android:text="1.5단계"></Button>
+
     <Button
         android:id="@+id/btnTwo"
+        style="@style/BaseText"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        style="@style/BaseText"
-        android:text = "2단계">
-    </Button>
+        android:layout_gravity="center"
+        android:text="2단계"></Button>
+
     <Button
         android:id="@+id/btnTwoFive"
+        style="@style/BaseText"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        style="@style/BaseText"
-        android:text = "2.5단계">
-    </Button>
+        android:layout_gravity="center"
+        android:text="2.5단계"></Button>
+
     <Button
         android:id="@+id/btnThree"
+        style="@style/BaseText"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        style="@style/BaseText"
-        android:text = "3단계">
-    </Button>
+        android:layout_gravity="center"
+        android:text="3단계"></Button>
 </LinearLayout>
 </layout>
