@@ -3,6 +3,7 @@
     android:initialLayout="@layout/widget_region_information"
     android:minWidth="222dp"
     android:minHeight="146dp"
+    android:configure="com.cookandroid.social_distance.WidgetActivity"
     android:updatePeriodMillis="216000"
     android:previewImage="@drawable/ic_launcher_foreground"
     android:resizeMode="horizontal|vertical"

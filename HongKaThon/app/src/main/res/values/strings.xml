@@ -8,4 +8,6 @@
     <string name="refresh">Refresh</string>
     <string name="plus_infection">Plus Infection</string>
     <string name="total">Total</string>
+    <string name="cancel">Cancel</string>
+    <string name="finish">Finish</string>
 </resources>

@@ -22,8 +22,8 @@ class RegionInformationWidget : AppWidgetProvider() {
         super.onReceive(context, intent)
         when(intent.action) {
             ACTION_REFRESH -> {
-                Toast.makeText(context, "Update", Toast.LENGTH_SHORT).show()
-                update(context, AppWidgetManager.getInstance(context), ComponentName(context, RegionInformationWidget::class.java))
+                val ids = AppWidgetManager.getInstance(context).getAppWidgetIds(ComponentName(context, RegionInformationWidget::class.java))
+                update(context, AppWidgetManager.getInstance(context), ids)
             }
         }
     }
@@ -34,25 +34,34 @@ class RegionInformationWidget : AppWidgetProvider() {
     }
 
     private fun update(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
-        appWidgetManager.updateAppWidget(appWidgetIds, getUpdatedView(context))
+        appWidgetIds.forEach {
+            update(context, appWidgetManager, it)
+        }
     }
 
-    private fun update(context: Context, appWidgetManager: AppWidgetManager, componentName: ComponentName) {
-        appWidgetManager.updateAppWidget(componentName, getUpdatedView(context))
+    private fun update(context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int) {
+        appWidgetManager.updateAppWidget(appWidgetId, getUpdatedView(context, appWidgetId))
     }
 
-    private fun getUpdatedView(context: Context): RemoteViews {
+    private fun getUpdatedView(context: Context, id: Int): RemoteViews {
         val intent = Intent(context, RegionInformationWidget::class.java).setAction(ACTION_REFRESH)
         val pending = PendingIntent.getBroadcast(context, 0, intent, 0)
+        val index = context.getSharedPreferences("Widget", Context.MODE_PRIVATE).getInt(id.toString(), -1)
 
         return RemoteViews(context.packageName, R.layout.widget_region_information).apply {
-            val region = GpsTracker(context).getArea()
+            if (index == -1) {
+                setTextViewText(R.id.region, "새로고침을 해주세요")
+            } else {
+                val region = Region.values()[index]
 
-            setTextViewText(R.id.region, region.korean)
-            setTextViewText(R.id.total, "${CoronaData.getTotalInfection(region)}명")
-            setTextViewText(R.id.plus, "+${CoronaData.getPlusInfection(region)}명")
-            setTextViewText(R.id.level, "${CoronaData.getLevel(region)}단계")
+                setTextViewText(R.id.region, region.korean)
+                setTextViewText(R.id.total, "${CoronaData.getTotalInfection(region)}명")
+                setTextViewText(R.id.plus, "+${CoronaData.getPlusInfection(region)}명")
+                setTextViewText(R.id.level, "${CoronaData.getLevel(region)}단계")
+            }
+
             setOnClickPendingIntent(R.id.refresh, pending)
+
         }
     }
 }

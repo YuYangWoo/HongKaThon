@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="region"
+            type="com.cookandroid.social_distance.gps.Region" />
+    </data>
+
+    <TextView
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="@{region.korean, default=지역}"
+        android:background="@drawable/selection_background"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+</layout>
