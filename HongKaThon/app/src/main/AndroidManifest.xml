@@ -17,7 +17,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Social_Distance"
         android:usesCleartextTraffic="true">
-        <activity android:name=".WidgetActivity"></activity>
+        <activity android:name=".WidgetActivity">
+            <intent-filter>
+
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+
+            </intent-filter>
+        </activity>
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,16 +31,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity">
+
+        </activity>
 
         <receiver android:name=".widget.RegionInformationWidget">
             <intent-filter>
+                <action android:name="ACTION_REGION_INFORMATION_WIDGET_UPDATE" />
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_provider_region_information" />
+        </receiver>
+
+        <receiver android:name=".widget.CountryInformationWidget">
+            <intent-filter>
+                <action android:name="ACTION_COUNTRY_INFORMATION_WIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider_country_information"/>
         </receiver>
     </application>
 

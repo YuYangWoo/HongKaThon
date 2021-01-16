@@ -6,22 +6,21 @@ import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.widget.RemoteViews
-import android.widget.Toast
 import com.cookandroid.social_distance.R
-import com.cookandroid.social_distance.gps.GpsTracker
 import com.cookandroid.social_distance.gps.Region
 import com.cookandroid.social_distance.singleton.CoronaData
 
 class RegionInformationWidget : AppWidgetProvider() {
     companion object {
-        const val ACTION_REFRESH = "action_refresh"
+        const val ACTION_REGION_INFORMATION_WIDGET_REFRESH = "ACTION_REGION_INFORMATION_WIDGET_UPDATE"
     }
 
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
         when(intent.action) {
-            ACTION_REFRESH -> {
+            ACTION_REGION_INFORMATION_WIDGET_REFRESH -> {
                 val ids = AppWidgetManager.getInstance(context).getAppWidgetIds(ComponentName(context, RegionInformationWidget::class.java))
                 update(context, AppWidgetManager.getInstance(context), ids)
             }
@@ -31,6 +30,11 @@ class RegionInformationWidget : AppWidgetProvider() {
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
         super.onUpdate(context, appWidgetManager, appWidgetIds)
         update(context, appWidgetManager, appWidgetIds)
+    }
+
+    override fun onAppWidgetOptionsChanged(context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int, newOptions: Bundle?) {
+        super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions)
+        update(context, appWidgetManager, appWidgetId)
     }
 
     private fun update(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
@@ -44,7 +48,7 @@ class RegionInformationWidget : AppWidgetProvider() {
     }
 
     private fun getUpdatedView(context: Context, id: Int): RemoteViews {
-        val intent = Intent(context, RegionInformationWidget::class.java).setAction(ACTION_REFRESH)
+        val intent = Intent(context, RegionInformationWidget::class.java).setAction(ACTION_REGION_INFORMATION_WIDGET_REFRESH)
         val pending = PendingIntent.getBroadcast(context, 0, intent, 0)
         val index = context.getSharedPreferences("Widget", Context.MODE_PRIVATE).getInt(id.toString(), -1)
 
@@ -61,7 +65,6 @@ class RegionInformationWidget : AppWidgetProvider() {
             }
 
             setOnClickPendingIntent(R.id.refresh, pending)
-
         }
     }
 }

@@ -11,6 +11,17 @@ object CoronaData {
     private val infectionJob: Job
     private val level = HashMap<Region, String>()
     private val infection = HashMap<Region, Pair<Int, Int>>()
+    private val country = Array(8) { 0 }
+    private val countryJob: Job
+
+    private const val PATIENT = 0
+    private const val PATIENT_PLUS = 1
+    private const val UNDER_INSPECTION = 2
+    private const val UNDER_INSPECTION_PLUS = 3
+    private const val QUARANTINE = 4
+    private const val QUARANTINE_PLUS = 5
+    private const val DEAD = 6
+    private const val DEAD_PLUS = 7
 
     init {
         levelJob = CoroutineScope(Dispatchers.IO).launch {
@@ -36,6 +47,19 @@ object CoronaData {
                 infection[Region.getRegion(entry.child(0).text())] = Pair(total, plus)
             }
         }
+
+        countryJob = CoroutineScope(Dispatchers.IO).launch {
+            val document = Jsoup.connect("https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%EC%BD%94%EB%A1%9C%EB%82%98").get()
+            val elements = document.getElementsByClass("status_info").first().child(0).children()
+            country[PATIENT] = elements[0].child(1).text().replace(",", "").toInt()
+            country[PATIENT_PLUS] = elements[0].child(2).text().replace(",", "").toInt()
+            country[UNDER_INSPECTION] = elements[1].child(1).text().replace(",", "").toInt()
+            country[UNDER_INSPECTION_PLUS] = elements[1].child(2).text().replace(",", "").toInt()
+            country[QUARANTINE] = elements[2].child(1).text().replace(",", "").toInt()
+            country[QUARANTINE_PLUS] = elements[2].child(2).text().replace(",", "").toInt()
+            country[DEAD] = elements[3].child(1).text().replace(",", "").toInt()
+            country[DEAD_PLUS] = elements[3].child(2).text().replace(",", "").toInt()
+        }
     }
 
     fun getLevel(region: Region): String {
@@ -56,6 +80,62 @@ object CoronaData {
         return runBlocking {
             infectionJob.join()
             infection[region]?.second ?: 0
+        }
+    }
+
+    fun getCountryPatient(): Int {
+        return runBlocking {
+            countryJob.join()
+            country[PATIENT]
+        }
+    }
+
+    fun getCountryPatientPlus(): Int {
+        return runBlocking {
+            countryJob.join()
+            country[PATIENT_PLUS]
+        }
+    }
+
+    fun getCountryUnderInspection(): Int {
+        return runBlocking {
+            countryJob.join()
+            country[UNDER_INSPECTION]
+        }
+    }
+
+    fun getCountryUnderInspectionPlus(): Int {
+        return runBlocking {
+            countryJob.join()
+            country[UNDER_INSPECTION_PLUS]
+        }
+    }
+
+    fun getCountryQuarantine(): Int {
+        return runBlocking {
+            countryJob.join()
+            country[QUARANTINE]
+        }
+    }
+
+    fun getCountryQuarantinePlus(): Int {
+        return runBlocking {
+            countryJob.join()
+            country[QUARANTINE_PLUS]
+        }
+    }
+
+    fun getCountryDead(): Int {
+        return runBlocking {
+            countryJob.join()
+            country[DEAD]
+        }
+    }
+
+    fun getCountryDeadPlus(): Int {
+        return runBlocking {
+            countryJob.join()
+            country[DEAD_PLUS]
         }
     }
 }
