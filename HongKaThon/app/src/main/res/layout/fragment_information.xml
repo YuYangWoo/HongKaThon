@@ -1,100 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="check"
             type="com.cookandroid.social_distance.fragment.InformationFragment.CheckItem" />
     </data>
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cstLyImg"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/cstLyName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="1">
+        <ImageView
+            android:id="@+id/imgItem"
+            imageUrl="@{check.checkImg}"
+            android:layout_marginTop="40dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center" />
 
-            <ImageView
-                android:id="@+id/imgItem"
-                imageUrl="@{check.checkImg}"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="100dp"
-                android:layout_gravity="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/txtName"
+            style="@style/BaseText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="36dp"
+            android:text="@{check.checkname}" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cstLyName"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="1dp"
-            app:layout_constraintBottom_toTopOf="@+id/cstLyContent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cstLyImg"
-            app:layout_constraintWidth_percent="1">
 
-            <TextView
-                android:id="@+id/txtName"
-                style="@style/BaseText"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="36dp"
-                android:text="@{check.checkname}"
-                android:layout_gravity="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cstLyContent"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.6"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cstLyName"
-            app:layout_constraintWidth_percent="1">
-
-            <TextView
-                android:id="@+id/txtContent"
-                style="@style/BaseText"
-                android:layout_width="330dp"
-                android:layout_height="300dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="40dp"
-                android:layout_marginEnd="41dp"
-                android:layout_marginBottom="139dp"
-                android:text="@{check.checkContent}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/txtContent"
+            style="@style/BaseText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="41dp"
+            android:layout_marginBottom="139dp"
+            android:text="@{check.checkContent}" />
+    </LinearLayout>
+</ScrollView>
 </layout>
