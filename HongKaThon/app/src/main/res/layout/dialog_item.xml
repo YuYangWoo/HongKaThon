@@ -10,40 +10,67 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-    <Button
+
+    <TextView
+        style="@style/BaseText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="거리지침 단계를 선택해주세요."></TextView>
+
+    <android.widget.Button
         android:id="@+id/btnOne"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
         style="@style/BaseText"
-        android:text = "1단계">
-    </Button>
-    <Button
+        android:layout_width="150dp"
+        android:background="@drawable/button_background"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:text="1단계"></android.widget.Button>
+
+    <android.widget.Button
         android:id="@+id/btnOneFive"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
         style="@style/BaseText"
-        android:text = "1.5단계">
-    </Button>
-    <Button
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_width="150dp"
+        android:background="@drawable/button_background"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:text="1.5단계"></android.widget.Button>
+
+    <android.widget.Button
         android:id="@+id/btnTwo"
+        style="@style/BaseText"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:background="@drawable/button_background"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        style="@style/BaseText"
-        android:text = "2단계">
-    </Button>
-    <Button
+        android:layout_gravity="center"
+        android:text="2단계"></android.widget.Button>
+
+    <android.widget.Button
         android:id="@+id/btnTwoFive"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
         style="@style/BaseText"
-        android:text = "2.5단계">
-    </Button>
-    <Button
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_width="150dp"
+        android:background="@drawable/button_background"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:text="2.5단계"></android.widget.Button>
+
+    <android.widget.Button
         android:id="@+id/btnThree"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
         style="@style/BaseText"
-        android:text = "3단계">
-    </Button>
+        android:layout_width="150dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:background="@drawable/button_background"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:text="3단계"></android.widget.Button>
 </LinearLayout>
 </layout>

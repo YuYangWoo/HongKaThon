@@ -35,7 +35,6 @@ object CoronaData {
                 val plus = entry.child(2).text().replace(",", "").replace("(", "").replace("+", "").replace(")", "").toInt()
                 infection[Region.getRegion(entry.child(0).text())] = Pair(total, plus)
             }
-            Log.d("PASSZ", "$infection")
         }
     }
 
