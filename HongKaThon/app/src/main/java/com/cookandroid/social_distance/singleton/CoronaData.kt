@@ -1,5 +1,6 @@
 package com.cookandroid.social_distance.singleton
 
+import android.util.Log
 import com.cookandroid.social_distance.gps.GpsTracker
 import com.cookandroid.social_distance.gps.Region
 import kotlinx.coroutines.*
@@ -15,10 +16,12 @@ object CoronaData {
         levelJob = CoroutineScope(Dispatchers.IO).launch {
             val document = Jsoup.connect("http://ncov.mohw.go.kr/regSocdisBoardView.do?brdId=6&brdGubun=68&ncvContSeq=495").get()
             val element = document.getElementById("main_maplayout")
-            val data = element.getElementsByTag("button")
+            val buttons = element.getElementsByTag("button")
+            for (id in buttons) {
+                val key = id.attr("data-city")
+                val data = document.getElementById(key)
 
-            for (entry in data) {
-                level[Region.getRegion(entry.child(0).text())] = entry.child(1).text()
+                level[Region.getRegion(data.getElementsByClass("rssd_title_1").first().text())] = data.getElementsByClass("rssd_title_2").first().text().substringBefore("단계")
             }
         }
 
@@ -32,6 +35,7 @@ object CoronaData {
                 val plus = entry.child(2).text().replace(",", "").replace("(", "").replace("+", "").replace(")", "").toInt()
                 infection[Region.getRegion(entry.child(0).text())] = Pair(total, plus)
             }
+            Log.d("PASSZ", "$infection")
         }
     }
 
