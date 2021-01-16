@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Social_Distance</string>
+    <string name="app_name">거리두기 지침</string>
     <string name="type">Type</string>
     <string name="filter">Filter</string>
     <string name="level">Level</string>

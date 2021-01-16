@@ -73,7 +73,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             if (drawer.isDrawerOpen(navigation)) {
                 drawer.closeDrawer(navigation)
             } else {
-                backPressCloseHandler.onBackPressed();
+                super.onBackPressed()
             }
         }
     }
