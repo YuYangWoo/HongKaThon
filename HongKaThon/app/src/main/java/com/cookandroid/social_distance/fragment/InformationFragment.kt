@@ -1,5 +1,6 @@
 package com.cookandroid.social_distance.fragment
 
+import android.content.Intent
 import android.util.Log
 import androidx.navigation.fragment.navArgs
 import com.cookandroid.social_distance.R
@@ -18,6 +19,7 @@ class InformationFragment : BaseFragment<FragmentInformationBinding>(R.layout.fr
         name = args.name
         level = args.level
         check()
+        shareBtn()
         binding.check = checkedList[0]
 
     }
@@ -50,6 +52,15 @@ class InformationFragment : BaseFragment<FragmentInformationBinding>(R.layout.fr
                     }
                 }
             }
+        }
+    }
+
+    private fun shareBtn() {
+        binding.btnShare.setOnClickListener {
+        var shareIntent = Intent(Intent.ACTION_SEND)
+        shareIntent.type = "text/plain"
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "${checkedList[0].checkname}\n${checkedList[0].checkContent}")
+        startActivity(shareIntent)
         }
     }
 
