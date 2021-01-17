@@ -31,21 +31,25 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         initNavigationView()
     }
 
+    // 툴바 구현 + 툴바에 Controller와 appBarConfiguration 결합
     private fun initSupportActionBar() {
         setSupportActionBar(binding.toolbar)
         setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
+    // 네비게이션뷰와 navController 결합
     private fun initNavigationView() {
         with(binding) {
             navigation.setupWithNavController(navController)
         }
     }
 
+    // AppBar에 생성되는 뒤로가기 버튼
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
+    // 뒤로 가기 버튼을 누르면
     override fun onBackPressed() {
         with(binding) {
             if (drawer.isDrawerOpen(navigation)) {

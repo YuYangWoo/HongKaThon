@@ -11,7 +11,7 @@ object AreaFactory {
         // DB 테이블 연결
         dbArea = database.getReference("areaList")
 
-        // logList에 DB데이터 연결
+        // DB데이터 연결
         dbArea.addListenerForSingleValueEvent(object : ValueEventListener {
 
             // 파이어베이스 데이터베이스의 데이터를 받아오는 곳
