@@ -19,16 +19,19 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 private lateinit var gpsTracker:GpsTracker
     override fun init() {
         super.init()
+
+        // TextView 값 넣어주기
         binding.root.findViewById<TextView>(R.id.address).also {
-            gpsTracker = GpsTracker(requireContext())
+            gpsTracker = GpsTracker(requireContext()) //객체 생성
             var address = "현재 계신 곳은 ${gpsTracker.getArea().korean}\n거리두기 지침은 ${CoronaData.getLevel(gpsTracker.getArea())}단계"
             var sps = SpannableStringBuilder(address)
             var word = arrayListOf(gpsTracker.getArea().korean, CoronaData.getLevel(gpsTracker.getArea()))
 
-            for(i in 0..1) {
+            // 지역과 단계 크기 1.3배 크게 하기
+            for(i in word.indices) {
                 var start = address.indexOf(word[i])
                 var end = start + word[i].length
-                sps.setSpan(RelativeSizeSpan(1.3f),start, end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
+                sps.setSpan(RelativeSizeSpan(1.3f), start, end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
             }
             it.text = sps
         }
@@ -36,6 +39,7 @@ private lateinit var gpsTracker:GpsTracker
         setRecyclerView()
     }
 
+    // 리사이클러뷰 adapt
     private fun setRecyclerView() {
         val itemAdapter = ItemAdapter(requireContext())
         binding.recyclerMain.apply {

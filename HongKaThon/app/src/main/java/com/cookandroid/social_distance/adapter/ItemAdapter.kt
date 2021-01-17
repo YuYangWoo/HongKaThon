@@ -20,19 +20,24 @@ class ItemAdapter constructor(): RecyclerView.Adapter<ItemAdapter.ListViewHolder
     constructor(context: Context): this() {
         this.context = context
     }
+
+    // 홀더 만들기
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val binding = HolderListBinding.inflate(LayoutInflater.from(context), parent, false)
         return ListViewHolder(binding)
     }
 
+    // 홀더에 데이터 Bind
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         holder.onBind(data[position])
     }
 
+    // 데이터 크기 return
     override fun getItemCount(): Int {
         return data.size
     }
 
+    // 홀더 클래스 정의
     class ListViewHolder(private val binding: HolderListBinding) : RecyclerView.ViewHolder(binding.root) {
 
             fun onBind(data: AreaItem) {

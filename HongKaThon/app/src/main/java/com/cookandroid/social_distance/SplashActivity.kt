@@ -14,12 +14,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.cookandroid.social_distance.base.BaseActivity
 import com.cookandroid.social_distance.databinding.ActivitySplashBinding
-import com.cookandroid.social_distance.gps.GpsTracker
 
 
 class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_splash) {
-    private lateinit var gpsTracker: GpsTracker
-    private val MY_REQUEST_CODE = 100
     private val splashTime: Long = 2000
     var REQUIRED_PERMISSIONS = arrayOf(
             android.Manifest.permission.ACCESS_FINE_LOCATION,
@@ -52,7 +49,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             // 요청 코드가 PERMISSIONS_REQUEST_CODE 이고, 요청한 퍼미션 개수만큼 수신되었다면
             var check_result = true
 
-            // 모든 퍼미션을 허용했는지 체크합니다.
+            // 모든 권한을 허용했는지 체크
             for (result in grandResults) {
                 if (result != PackageManager.PERMISSION_GRANTED) {
                     check_result = false
@@ -65,9 +62,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 }, splashTime)
-                //위치 값을 가져올 수 있음
             } else {
-                // 거부한 퍼미션이 있다면 앱을 사용할 수 없는 이유를 설명해주고 앱을 종료합니다.2 가지 경우가 있습니다.
+                // 거부한 권한이 있다면 앱을 종료
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])
                         || ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[1])
                         || ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[2])) {
@@ -81,10 +77,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
     }
 
 
-    fun checkRunTimePermission() {
-
-        //런타임 퍼미션 처리
-        // 1. 위치 퍼미션을 가지고 있는지 체크합니다.
+    private fun checkRunTimePermission() {
+        // 위치 권한을 가지는지 Check
         val hasFineLocationPermission = ContextCompat.checkSelfPermission(
                 this,
                 android.Manifest.permission.ACCESS_FINE_LOCATION
@@ -99,38 +93,26 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         )
         if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED &&
                 hasCoarseLocationPermission == PackageManager.PERMISSION_GRANTED &&
-                hasBackgroundLocationPermission == PackageManager.PERMISSION_GRANTED
-        ) {
+                hasBackgroundLocationPermission == PackageManager.PERMISSION_GRANTED) {
             // 2초 지나고 화면 전환
             Handler(Looper.getMainLooper()).postDelayed({
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }, splashTime)
-            // 2. 이미 퍼미션을 가지고 있다면
-            // ( 안드로이드 6.0 이하 버전은 런타임 퍼미션이 필요없기 때문에 이미 허용된 걸로 인식합니다.)
 
-
-            // 3.  위치 값을 가져올 수 있음
-        } else {  //2. 퍼미션 요청을 허용한 적이 없다면 퍼미션 요청이 필요합니다. 2가지 경우(3-1, 4-1)가 있습니다.
-
-            // 3-1. 사용자가 퍼미션 거부를 한 적이 있는 경우에는
-            if (ActivityCompat.shouldShowRequestPermissionRationale(
-                            this,
-                            REQUIRED_PERMISSIONS[0]
-                    )
-            ) {
-
-                // 3-2. 요청을 진행하기 전에 사용자가에게 퍼미션이 필요한 이유를 설명해줄 필요가 있습니다.
+        } else {  // 권한 허용을 한 적이 없으면
+            // 퍼미션 거부를 한 경우가 있다면
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])) {
+                // 권한 요청 이유 토스트 메시지
                 Toast.makeText(this, "이 앱을 실행하려면 위치 접근 권한이 필요합니다.", Toast.LENGTH_LONG)
                         .show()
-                // 3-3. 사용자게에 퍼미션 요청을 합니다. 요청 결과는 onRequestPermissionResult에서 수신됩니다.
+                // 사용자에게 권한 요청
                 ActivityCompat.requestPermissions(
                         this, REQUIRED_PERMISSIONS,
                         PERMISSIONS_REQUEST_CODE
                 )
             } else {
-                // 4-1. 사용자가 퍼미션 거부를 한 적이 없는 경우에는 퍼미션 요청을 바로 합니다.
-                // 요청 결과는 onRequestPermissionResult에서 수신됩니다.
+                // 사용자가 퍼미션 거부를 한 적이 없는 경우에 권한 요청
                 ActivityCompat.requestPermissions(
                         this, REQUIRED_PERMISSIONS,
                         PERMISSIONS_REQUEST_CODE
@@ -139,7 +121,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         }
     }
 
-    //여기부터는 GPS 활성화를 위한 메소드들
+    // GPS 설정으로 이동
     private fun showDialogForLocationServiceSetting() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("위치 서비스 비활성화")
@@ -159,6 +141,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         builder.create().show()
     }
 
+    // 결과 메서드
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
