@@ -34,6 +34,7 @@ class ItemDialog : BaseDialog<DialogItemBinding>(R.layout.dialog_item) {
          btn()
     }
 
+    // 버튼 클릭 이벤트
     private fun btn() {
         binding.btnOne.setOnClickListener {
             level = binding.btnOne.text.toString()
@@ -61,7 +62,9 @@ class ItemDialog : BaseDialog<DialogItemBinding>(R.layout.dialog_item) {
             getFragmentNavController(R.id.fragment)!!.navigate(action)
         }
     }
-    fun Fragment.getFragmentNavController(@IdRes id: Int) = activity?.let {
+
+    // NavController 호출
+    private fun Fragment.getFragmentNavController(@IdRes id: Int) = activity?.let {
         return@let Navigation.findNavController(it, id)
     }
 }

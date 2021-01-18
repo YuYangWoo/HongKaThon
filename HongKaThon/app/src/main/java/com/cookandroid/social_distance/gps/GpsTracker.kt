@@ -22,7 +22,9 @@ class GpsTracker(context: Context) : Service(), LocationListener {
     var latitude = 0.0
     var longitude = 0.0
 
-    protected lateinit var locationManager: LocationManager
+    private lateinit var locationManager: LocationManager
+
+    // 위치 얻기
     private fun getLocation(): Location? {
         try {
             locationManager = mContext.getSystemService(LOCATION_SERVICE) as LocationManager
@@ -104,7 +106,9 @@ class GpsTracker(context: Context) : Service(), LocationListener {
         }
         return longitude
     }
-    fun getCurrentAddress(latitude: Double, longitude: Double): String {
+
+    // 주소로 변환
+    private fun getCurrentAddress(latitude: Double, longitude: Double): String {
 
         //지오코더... GPS를 주소로 변환
         val geocoder = Geocoder(mContext, Locale.getDefault())
@@ -142,11 +146,12 @@ class GpsTracker(context: Context) : Service(), LocationListener {
         return null
     }
 
-    fun stopUsingGPS() {
-        if (locationManager != null) {
-            locationManager.removeUpdates(this@GpsTracker)
-        }
-    }
+    // 나중을 위한 주석
+//    fun stopUsingGPS() {
+//        if (locationManager != null) {
+//            locationManager.removeUpdates(this@GpsTracker)
+//        }
+//    }
 
     companion object {
         private const val MIN_DISTANCE_CHANGE_FOR_UPDATES: Long = 10

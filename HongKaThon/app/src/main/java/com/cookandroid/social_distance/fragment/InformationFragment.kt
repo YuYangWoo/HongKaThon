@@ -1,5 +1,6 @@
 package com.cookandroid.social_distance.fragment
 
+import android.content.Intent
 import android.util.Log
 import androidx.navigation.fragment.navArgs
 import com.cookandroid.social_distance.R
@@ -15,17 +16,26 @@ class InformationFragment : BaseFragment<FragmentInformationBinding>(R.layout.fr
     lateinit var level: String
     override fun init() {
         super.init()
+
+        //데이터 가져오기
         name = args.name
         level = args.level
+
         check()
+        shareBtn()
+
+        // 데이터 바인딩
         binding.check = checkedList[0]
 
     }
+    // 체크된 아이템 클래스
     data class CheckItem(
         var checkname:String,
         var checkContent:String,
         var checkImg:String
     )
+
+    // 이름과 단계로 시설 체크
     private fun check() {
         for(i in itemList.indices) {
             if(itemList[i].name == name) {
@@ -50,6 +60,16 @@ class InformationFragment : BaseFragment<FragmentInformationBinding>(R.layout.fr
                     }
                 }
             }
+        }
+    }
+
+    // 공유하기 버튼
+    private fun shareBtn() {
+        binding.btnShare.setOnClickListener {
+        var shareIntent = Intent(Intent.ACTION_SEND)
+        shareIntent.type = "text/plain"
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "${checkedList[0].checkname}\n${checkedList[0].checkContent}")
+        startActivity(shareIntent)
         }
     }
 
