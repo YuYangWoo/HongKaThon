@@ -66,29 +66,53 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:singleLine="true"
             android:textColor="#FFFFFF"
-            android:textSize="40sp"
-            android:textStyle="bold" />
+            android:textSize="34sp"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusedByDefault="true"
+            android:focusableInTouchMode="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:textStyle="bold">
+            <requestFocus/>
+        </TextView>
 
         <TextView
             android:id="@+id/plus"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:ellipsize="marquee"
             android:gravity="center"
+            android:singleLine="true"
             android:textColor="#FFFFFF"
-            android:textSize="40sp"
-            android:textStyle="bold" />
+            android:textSize="34sp"
+            android:focusable="true"
+            android:focusedByDefault="true"
+            android:focusableInTouchMode="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:textStyle="bold">
+            <requestFocus />
+        </TextView>
 
         <TextView
             android:id="@+id/level"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:ellipsize="marquee"
             android:gravity="center"
+            android:singleLine="true"
             android:textColor="#FFFFFF"
-            android:textSize="40sp"
-            android:textStyle="bold" />
+            android:textSize="34sp"
+            android:focusable="true"
+            android:focusedByDefault="true"
+            android:focusableInTouchMode="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:textStyle="bold">
+            <requestFocus />
+        </TextView>
     </LinearLayout>
 
     <ImageButton
