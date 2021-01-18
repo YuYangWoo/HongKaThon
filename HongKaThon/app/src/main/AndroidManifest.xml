@@ -35,7 +35,9 @@
 
         </activity>
 
-        <receiver android:name=".widget.RegionInformationWidget">
+        <receiver
+            android:label="지역별 코로나 현황"
+            android:name=".widget.RegionInformationWidget">
             <intent-filter>
                 <action android:name="ACTION_REGION_INFORMATION_WIDGET_UPDATE" />
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -46,7 +48,9 @@
                 android:resource="@xml/widget_provider_region_information" />
         </receiver>
 
-        <receiver android:name=".widget.CountryInformationWidget">
+        <receiver
+            android:label="코로나 현황"
+            android:name=".widget.CountryInformationWidget">
             <intent-filter>
                 <action android:name="ACTION_COUNTRY_INFORMATION_WIDGET_UPDATE" />
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
