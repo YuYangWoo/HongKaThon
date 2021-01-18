@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider
     android:initialLayout="@layout/widget_region_information"
-    android:minWidth="222dp"
+    android:minWidth="500dp"
     android:minHeight="146dp"
     android:configure="com.cookandroid.social_distance.WidgetActivity"
     android:updatePeriodMillis="216000"
-    android:previewImage="@drawable/ic_launcher_foreground"
-    android:resizeMode="horizontal|vertical"
+    android:previewImage="@drawable/region_widget_screenshot"
+    android:resizeMode="horizontal"
     xmlns:android="http://schemas.android.com/apk/res/android" />

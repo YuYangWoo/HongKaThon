@@ -49,6 +49,7 @@ class CountryInformationWidget : AppWidgetProvider() {
         val pending = PendingIntent.getBroadcast(context, 0, intent, 0)
 
         return RemoteViews(context.packageName, R.layout.widget_country_information).apply {
+            this.
             setTextViewText(R.id.patient, CoronaData.getCountryPatient().toString())
             setTextViewText(R.id.patientPlus, "+" + CoronaData.getCountryPatientPlus().toString())
             setTextViewText(R.id.underInspection, CoronaData.getCountryUnderInspection().toString())
