@@ -13,19 +13,22 @@
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+       >
 
 
         <ImageView
             android:id="@+id/imgItem"
             imageUrl="@{check.checkImg}"
-            android:layout_marginTop="40dp"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_gravity="center" />
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewPager2" />
 
 
         <TextView
@@ -35,9 +38,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:layout_marginBottom="36dp"
-            android:text="@{check.checkName, default=Name}" />
+            android:text="@{check.checkName, default=Name}"
+            app:layout_constraintTop_toBottomOf="@+id/imgItem"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
 
         <TextView
@@ -45,20 +51,23 @@
             style="@style/BaseText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="41dp"
-            android:layout_marginBottom="139dp"
-            android:text="@{check.checkContent, default=Content}" />
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="@{check.checkContent, default=Content}"
+            app:layout_constraintTop_toBottomOf="@+id/txtName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <android.widget.Button
             android:id="@+id/btnShare"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_gravity="center"
+            android:layout_marginTop="180dp"
             android:background="@drawable/ic_send"
-            >
-        </android.widget.Button>
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtContent"></android.widget.Button>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,8 +75,19 @@
         android:text="공유하기"
         android:layout_marginTop="3dp"
         android:layout_gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnShare"
         />
 
-    </LinearLayout>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager2"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
 </layout>
