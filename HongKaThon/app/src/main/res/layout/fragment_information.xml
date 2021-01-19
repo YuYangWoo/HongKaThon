@@ -37,7 +37,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="36dp"
-            android:text="@{check.checkname}" />
+            android:text="@{check.checkName, default=Name}" />
 
 
         <TextView
@@ -49,7 +49,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginEnd="41dp"
             android:layout_marginBottom="139dp"
-            android:text="@{check.checkContent}" />
+            android:text="@{check.checkContent, default=Content}" />
 
         <android.widget.Button
             android:id="@+id/btnShare"
@@ -59,14 +59,14 @@
             android:background="@drawable/ic_send"
             >
         </android.widget.Button>
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    style="@style/BaseText"
-    android:text="공유하기"
-    android:layout_marginTop="3dp"
-    android:layout_gravity="center"
-    />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/BaseText"
+        android:text="공유하기"
+        android:layout_marginTop="3dp"
+        android:layout_gravity="center"
+        />
 
     </LinearLayout>
 </ScrollView>

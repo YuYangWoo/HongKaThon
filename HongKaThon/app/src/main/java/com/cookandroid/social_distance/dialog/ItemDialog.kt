@@ -4,11 +4,13 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 
 import com.cookandroid.social_distance.R
@@ -36,10 +38,27 @@ class ItemDialog : BaseDialog<DialogItemBinding>(R.layout.dialog_item) {
 
     // 버튼 클릭 이벤트
     private fun btn() {
+        /*
+        binding.setOnLevelClick {
+            var level = -1
+            when(it.id) {
+                R.id.btnOne -> {
+                    level = AreaItem.ONE
+                    action(areaItem, level)
+                }
+            }
+
+            it.findNavController()
+        }
+         */
+
         binding.btnOne.setOnClickListener {
+            Toast.makeText(it.context, "BEFORE", Toast.LENGTH_SHORT).show()
             level = binding.btnOne.text.toString()
-            var action = ItemDialogDirections.actionItemDialogToInformationFragment(level, itemName)
-            getFragmentNavController(R.id.fragment)!!.navigate(action)
+            findNavController().navigate(ItemDialogDirections.actionItemDialogToInformationFragment(level, itemName))
+            Toast.makeText(it.context, "AFTER", Toast.LENGTH_SHORT).show()
+//            var action = ItemDialogDirections.actionItemDialogToInformationFragment(level, itemName)
+//            getFragmentNavController(R.id.fragment)!!.navigate(action)
         }
         binding.btnOneFive.setOnClickListener {
             level = binding.btnOneFive.text.toString()

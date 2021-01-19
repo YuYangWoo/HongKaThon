@@ -3,14 +3,16 @@ package com.cookandroid.social_distance.fragment
 import android.content.Intent
 import android.util.Log
 import androidx.navigation.fragment.navArgs
+import com.cookandroid.social_distance.AreaFactory
+import com.cookandroid.social_distance.AreaItem
 import com.cookandroid.social_distance.R
 import com.cookandroid.social_distance.SplashActivity
 import com.cookandroid.social_distance.base.BaseFragment
 import com.cookandroid.social_distance.databinding.FragmentInformationBinding
 
 class InformationFragment : BaseFragment<FragmentInformationBinding>(R.layout.fragment_information) {
-    var itemList =SplashActivity().areaList
-    var checkedList = ArrayList<CheckItem>()
+    private val itemList = AreaFactory.areaList
+    private var checkedList = ArrayList<CheckItem>()
     private val args:InformationFragmentArgs by navArgs()
     lateinit var name: String
     lateinit var level: String
@@ -21,6 +23,10 @@ class InformationFragment : BaseFragment<FragmentInformationBinding>(R.layout.fr
         name = args.name
         level = args.level
 
+        /*
+        areaItem로 View를 업데이트하는 코드
+         */
+
         check()
         shareBtn()
 
@@ -30,13 +36,17 @@ class InformationFragment : BaseFragment<FragmentInformationBinding>(R.layout.fr
     }
     // 체크된 아이템 클래스
     data class CheckItem(
-        var checkname:String,
-        var checkContent:String,
-        var checkImg:String
+            var checkName:String,
+            var checkContent:String,
+            var checkImg:String
     )
 
     // 이름과 단계로 시설 체크
     private fun check() {
+        /*
+        areaItem으로 바인딩
+        level같은 경우는 information[level]
+         */
         for(i in itemList.indices) {
             if(itemList[i].name == name) {
                 when (level) {
@@ -66,10 +76,12 @@ class InformationFragment : BaseFragment<FragmentInformationBinding>(R.layout.fr
     // 공유하기 버튼
     private fun shareBtn() {
         binding.btnShare.setOnClickListener {
-        var shareIntent = Intent(Intent.ACTION_SEND)
-        shareIntent.type = "text/plain"
-        shareIntent.putExtra(Intent.EXTRA_TEXT, "${checkedList[0].checkname}\n${checkedList[0].checkContent}")
-        startActivity(shareIntent)
+            val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                putExtra(Intent.EXTRA_TEXT, "${checkedList[0].checkName}\n${checkedList[0].checkContent}")
+            }
+
+            startActivity(shareIntent)
         }
     }
 

@@ -13,17 +13,13 @@ import com.cookandroid.social_distance.fragment.MainFragmentDirections
 import java.util.Currency.getInstance
 
 
-class ItemAdapter constructor(): RecyclerView.Adapter<ItemAdapter.ListViewHolder>() {
+class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ListViewHolder>() {
     var data = ArrayList<AreaItem>()
-    var context:Context ?= null
 
-    constructor(context: Context): this() {
-        this.context = context
-    }
 
     // 홀더 만들기
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val binding = HolderListBinding.inflate(LayoutInflater.from(context), parent, false)
+        val binding = HolderListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ListViewHolder(binding)
     }
 
@@ -40,9 +36,9 @@ class ItemAdapter constructor(): RecyclerView.Adapter<ItemAdapter.ListViewHolder
     // 홀더 클래스 정의
     class ListViewHolder(private val binding: HolderListBinding) : RecyclerView.ViewHolder(binding.root) {
 
-            fun onBind(data: AreaItem) {
-                binding.main = data
-            }
+        fun onBind(data: AreaItem) {
+            binding.main = data
+        }
 
         init {
             binding.root.setOnClickListener {
