@@ -1,16 +1,12 @@
 package com.cookandroid.social_distance.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.cookandroid.social_distance.AreaItem
 import com.cookandroid.social_distance.databinding.HolderListBinding
-import com.cookandroid.social_distance.dialog.ItemDialog
 import com.cookandroid.social_distance.fragment.MainFragmentDirections
-import java.util.Currency.getInstance
 
 
 class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ListViewHolder>() {
@@ -42,8 +38,7 @@ class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ListViewHolder>() {
 
         init {
             binding.root.setOnClickListener {
-                var name = binding.main!!.name
-                var action = MainFragmentDirections.actionMainFragmentToItemDialog(name)
+                var action = MainFragmentDirections.actionMainFragmentToInformationFragment()
                 itemView.findNavController().navigate(action)
             }
         }
