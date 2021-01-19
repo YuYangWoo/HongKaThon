@@ -4,6 +4,7 @@ import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.style.AbsoluteSizeSpan
 import android.text.style.RelativeSizeSpan
+import android.util.Log
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.cookandroid.social_distance.AreaFactory

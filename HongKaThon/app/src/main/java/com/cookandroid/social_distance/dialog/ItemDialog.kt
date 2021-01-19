@@ -12,6 +12,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.cookandroid.social_distance.AreaFactory
 
 import com.cookandroid.social_distance.R
 import com.cookandroid.social_distance.base.BaseDialog
@@ -34,6 +35,7 @@ class ItemDialog : BaseDialog<DialogItemBinding>(R.layout.dialog_item) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
          btn()
+
     }
 
     // 버튼 클릭 이벤트
@@ -53,12 +55,15 @@ class ItemDialog : BaseDialog<DialogItemBinding>(R.layout.dialog_item) {
          */
 
         binding.btnOne.setOnClickListener {
-            Toast.makeText(it.context, "BEFORE", Toast.LENGTH_SHORT).show()
-            level = binding.btnOne.text.toString()
-            findNavController().navigate(ItemDialogDirections.actionItemDialogToInformationFragment(level, itemName))
-            Toast.makeText(it.context, "AFTER", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(it.context, "BEFORE", Toast.LENGTH_SHORT).show()
+//            level = binding.btnOne.text.toString()
+//            findNavController().navigate(ItemDialogDirections.actionItemDialogToInformationFragment(level, itemName))
+//            Toast.makeText(it.context, "AFTER", Toast.LENGTH_SHORT).show()
 //            var action = ItemDialogDirections.actionItemDialogToInformationFragment(level, itemName)
 //            getFragmentNavController(R.id.fragment)!!.navigate(action)
+            level = binding.btnOne.text.toString()
+            var action = ItemDialogDirections.actionItemDialogToInformationFragment(level, itemName)
+            getFragmentNavController(R.id.fragment)!!.navigate(action)
         }
         binding.btnOneFive.setOnClickListener {
             level = binding.btnOneFive.text.toString()

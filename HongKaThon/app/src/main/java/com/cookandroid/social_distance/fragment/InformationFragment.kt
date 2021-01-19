@@ -47,30 +47,30 @@ class InformationFragment : BaseFragment<FragmentInformationBinding>(R.layout.fr
         areaItem으로 바인딩
         level같은 경우는 information[level]
          */
-        for(i in itemList.indices) {
-            if(itemList[i].name == name) {
-                when (level) {
-                    "1단계" -> {
-                        checkedList = arrayListOf(CheckItem(itemList[i].name, itemList[i].one, itemList[i].img))
-                    }
-                    "1.5단계" -> {
-                        checkedList = arrayListOf(CheckItem(itemList[i].name, itemList[i].onedotfive, itemList[i].img))
-                    }
-                    "2단계" -> {
-                        checkedList = arrayListOf(CheckItem(itemList[i].name, itemList[i].twostep, itemList[i].img))
-                    }
-                    "2.5단계" -> {
-                        checkedList = arrayListOf(CheckItem(itemList[i].name, itemList[i].twodotfivestep, itemList[i].img))
-                    }
-                    "3단계" -> {
-                        checkedList = arrayListOf(CheckItem(itemList[i].name, itemList[i].threestep, itemList[i].img))
-                    }
-                    else -> {
-                        Log.d("Error", "참조하지 못하는 인덱스")
-                    }
-                }
-            }
-        }
+//        for(i in itemList.indices) {
+//            if(itemList[i].name == name) {
+//                when (level) {
+//                    "1단계" -> {
+//                        checkedList = arrayListOf(CheckItem(itemList[i].name, itemList[i].one, itemList[i].img))
+//                    }
+//                    "1.5단계" -> {
+//                        checkedList = arrayListOf(CheckItem(itemList[i].name, itemList[i].onedotfive, itemList[i].img))
+//                    }
+//                    "2단계" -> {
+//                        checkedList = arrayListOf(CheckItem(itemList[i].name, itemList[i].twostep, itemList[i].img))
+//                    }
+//                    "2.5단계" -> {
+//                        checkedList = arrayListOf(CheckItem(itemList[i].name, itemList[i].twodotfivestep, itemList[i].img))
+//                    }
+//                    "3단계" -> {
+//                        checkedList = arrayListOf(CheckItem(itemList[i].name, itemList[i].threestep, itemList[i].img))
+//                    }
+//                    else -> {
+//                        Log.d("Error", "참조하지 못하는 인덱스")
+//                    }
+//                }
+//            }
+//        }
     }
 
     // 공유하기 버튼
