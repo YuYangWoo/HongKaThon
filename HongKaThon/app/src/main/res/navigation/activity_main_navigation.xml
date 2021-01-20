@@ -31,5 +31,9 @@
         <argument
             android:name="checkItem"
             app:argType="com.cookandroid.social_distance.AreaItem" />
+        <argument
+            android:name="level"
+            app:argType="string"
+            android:defaultValue='""' />
     </fragment>
 </navigation>

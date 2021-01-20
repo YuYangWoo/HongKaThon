@@ -1,5 +1,6 @@
 package com.cookandroid.social_distance
 
+import android.util.Log
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -58,5 +59,20 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
               backPressCloseHandler.onBackPressed()
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("test","onResume")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("test","onStrop")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d("test","onRestart")
     }
 }

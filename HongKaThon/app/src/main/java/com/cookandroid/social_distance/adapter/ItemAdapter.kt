@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cookandroid.social_distance.AreaItem
 import com.cookandroid.social_distance.databinding.HolderListBinding
 import com.cookandroid.social_distance.fragment.MainFragmentDirections
+import com.cookandroid.social_distance.gps.GpsTracker
+import com.cookandroid.social_distance.singleton.CoronaData
 
 
 class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ListViewHolder>() {
@@ -39,7 +41,8 @@ class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ListViewHolder>() {
         init {
             binding.root.setOnClickListener {
                 var item: AreaItem =binding.main!!
-                var action = MainFragmentDirections.actionMainFragmentToInformationFragment(item)
+                var level = CoronaData.getLevel(GpsTracker(itemView.context).getArea())
+                var action = MainFragmentDirections.actionMainFragmentToInformationFragment(item, level)
                 itemView.findNavController().navigate(action)
             }
         }

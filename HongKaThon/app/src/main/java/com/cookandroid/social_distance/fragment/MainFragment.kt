@@ -40,6 +40,7 @@ private lateinit var gpsTracker:GpsTracker
         setRecyclerView()
     }
 
+
     // 리사이클러뷰 adapt
     private fun setRecyclerView() {
         with(binding.recyclerMain) {
