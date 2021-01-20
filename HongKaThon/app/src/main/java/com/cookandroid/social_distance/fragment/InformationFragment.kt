@@ -14,19 +14,21 @@ class InformationFragment :
     BaseFragment<FragmentInformationBinding>(R.layout.fragment_information) {
     private val args: InformationFragmentArgs by navArgs()
     private lateinit var now: String
+
     private val level: Array<Int> by lazy {
         arrayOf(
             R.string.ONE,
             R.string.ONE_FIVE, R.string.TWO, R.string.TWO_FIVE, R.string.THREE
         )
     }
+
     private lateinit var areaItem: AreaItem
     override fun init() {
         super.init()
         // 데이터 전달
         areaItem = args.checkItem
         now = args.level
-
+        convert()
         Log.d("test", now)
         initViewPager()
         initTabLayoutMediator()
@@ -39,6 +41,7 @@ class InformationFragment :
             adapter = ViewPagerAdapter().apply {
                 data = areaItem
             }
+            setCurrentItem(now.toInt(),true)
         }
     }
 
@@ -54,7 +57,7 @@ class InformationFragment :
                 R.id.btnShare -> {
                     val shareIntent = Intent(Intent.ACTION_SEND).apply {
                         type = "text/plain"
-                        putExtra(Intent.EXTRA_TEXT, "${areaItem.name}\n${areaItem.information}")
+                        putExtra(Intent.EXTRA_TEXT, "${areaItem.name}\n${areaItem.information[now.toInt()]}")
                     }
                     startActivity(shareIntent)
 
@@ -63,6 +66,25 @@ class InformationFragment :
         }
     }
 
+    private fun convert() {
+        when (now) {
+            "1" -> {
+                now = AreaItem.ONE.toString()
+            }
+            "1.5" -> {
+                now=AreaItem.ONE_FIVE.toString()
+            }
+            "2" -> {
+                now=AreaItem.TWO.toString()
+            }
+            "2.5" -> {
+                now =AreaItem.TWO_FIVE.toString()
+            }
+            "3" -> {
+                now=AreaItem.THREE.toString()
+            }
+        }
+    }
 
 }
 

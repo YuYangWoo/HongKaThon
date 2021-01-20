@@ -10,10 +10,10 @@ data class AreaItem(
     constructor() : this("", "",  listOf())
 
     companion object {
-        const val ONE = 1
-        const val ONE_FIVE = 1.5
+        const val ONE = 0
+        const val ONE_FIVE = 1
         const val TWO = 2
-        const val TWO_FIVE = 2.5
-        const val THREE = 3
+        const val TWO_FIVE = 3
+        const val THREE = 4
     }
 }
