@@ -1,88 +1,65 @@
 package com.cookandroid.social_distance.fragment
 
 import android.content.Intent
-import android.util.Log
-import androidx.navigation.fragment.navArgs
-import com.cookandroid.social_distance.AreaFactory
-import com.cookandroid.social_distance.AreaItem
+import androidx.fragment.app.Fragment
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.cookandroid.social_distance.R
-import com.cookandroid.social_distance.SplashActivity
 import com.cookandroid.social_distance.base.BaseFragment
 import com.cookandroid.social_distance.databinding.FragmentInformationBinding
+import com.cookandroid.social_distance.fragment.level.*
+import com.google.android.material.tabs.TabLayoutMediator
 
-class InformationFragment : BaseFragment<FragmentInformationBinding>(R.layout.fragment_information) {
-    private val itemList = AreaFactory.areaList
-    private var checkedList = ArrayList<CheckItem>()
-    private val args:InformationFragmentArgs by navArgs()
-    lateinit var name: String
-    lateinit var level: String
+class InformationFragment :
+    BaseFragment<FragmentInformationBinding>(R.layout.fragment_information) {
+    private val fragments by lazy {
+        arrayOf(OneFragment(), OneFiveFragment(), TwoFragment(), TwoFiveFragment(), ThreeFragment())
+    }
+    private lateinit var action: NavDirections
     override fun init() {
         super.init()
-
-        //데이터 가져오기
-        name = args.name
-        level = args.level
-
-        /*
-        areaItem로 View를 업데이트하는 코드
-         */
-
-        check()
-        shareBtn()
-
-        // 데이터 바인딩
-        binding.check = checkedList[0]
-
-    }
-    // 체크된 아이템 클래스
-    data class CheckItem(
-            var checkName:String,
-            var checkContent:String,
-            var checkImg:String
-    )
-
-    // 이름과 단계로 시설 체크
-    private fun check() {
-        /*
-        areaItem으로 바인딩
-        level같은 경우는 information[level]
-         */
-//        for(i in itemList.indices) {
-//            if(itemList[i].name == name) {
-//                when (level) {
-//                    "1단계" -> {
-//                        checkedList = arrayListOf(CheckItem(itemList[i].name, itemList[i].one, itemList[i].img))
-//                    }
-//                    "1.5단계" -> {
-//                        checkedList = arrayListOf(CheckItem(itemList[i].name, itemList[i].onedotfive, itemList[i].img))
-//                    }
-//                    "2단계" -> {
-//                        checkedList = arrayListOf(CheckItem(itemList[i].name, itemList[i].twostep, itemList[i].img))
-//                    }
-//                    "2.5단계" -> {
-//                        checkedList = arrayListOf(CheckItem(itemList[i].name, itemList[i].twodotfivestep, itemList[i].img))
-//                    }
-//                    "3단계" -> {
-//                        checkedList = arrayListOf(CheckItem(itemList[i].name, itemList[i].threestep, itemList[i].img))
-//                    }
-//                    else -> {
-//                        Log.d("Error", "참조하지 못하는 인덱스")
-//                    }
-//                }
-//            }
-//        }
+        initViewPager()
+        initTabLayoutMediator()
+        btnBack()
     }
 
-    // 공유하기 버튼
-    private fun shareBtn() {
-        binding.btnShare.setOnClickListener {
-            val shareIntent = Intent(Intent.ACTION_SEND).apply {
-                type = "text/plain"
-                putExtra(Intent.EXTRA_TEXT, "${checkedList[0].checkName}\n${checkedList[0].checkContent}")
+    private fun initViewPager() {
+        binding.viewPager2.adapter = object : FragmentStateAdapter(this) {
+            override fun getItemCount(): Int {
+                return fragments.size
             }
 
-            startActivity(shareIntent)
+            override fun createFragment(position: Int): Fragment {
+                return fragments[position]
+            }
+
         }
     }
 
-}
+    private fun initTabLayoutMediator() {
+        TabLayoutMediator(binding.tabLy, binding.viewPager2) { tab, position ->
+            tab.text = getString(fragments[position].tabTitle)
+        }.attach()
+    }
+
+    private fun btnBack() {
+        binding.setOnBtnClick {
+            when (it.id) {
+                R.id.btnBack -> {
+                    action = InformationFragmentDirections.actionInformationFragmentToMainFragment()
+                    findNavController().navigate(action)
+                }
+                R.id.btnShare -> {
+            val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+//                putExtra(Intent.EXTRA_TEXT, "${checkedList[0].checkName}\n${checkedList[0].checkContent}")
+            }
+            startActivity(shareIntent)
+
+    }
+                }
+            }
+        }
+    }
+

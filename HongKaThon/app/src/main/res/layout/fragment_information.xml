@@ -1,93 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
     <data>
-
         <variable
-            name="check"
-            type="com.cookandroid.social_distance.fragment.InformationFragment.CheckItem" />
+            name="info"
+            type="com.cookandroid.social_distance.fragment.InformationFragment" />
+        <variable
+            name="onBtnClick"
+            type="android.view.View.OnClickListener" />
     </data>
-
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-       >
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.InformationFragment">
 
-
-        <ImageView
-            android:id="@+id/imgItem"
-            imageUrl="@{check.checkImg}"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="25dp"
-            android:gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewPager2" />
-
-
-        <TextView
-            android:id="@+id/txtName"
-            style="@style/BaseText"
-            android:textSize="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="36dp"
-            android:text="@{check.checkName, default=Name}"
-            app:layout_constraintTop_toBottomOf="@+id/imgItem"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-
-        <TextView
-            android:id="@+id/txtContent"
-            style="@style/BaseText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="10dp"
-            android:text="@{check.checkContent, default=Content}"
-            app:layout_constraintTop_toBottomOf="@+id/txtName"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <android.widget.Button
-            android:id="@+id/btnShare"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="180dp"
-            android:background="@drawable/ic_send"
-            android:gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtContent"></android.widget.Button>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/BaseText"
-        android:text="공유하기"
-        android:layout_marginTop="3dp"
-        android:layout_gravity="center"
+    <!--        imageUrl="@{check.checkImg}"-->
+    <ImageView
+        android:id="@+id/imgItem"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="60dp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnShare"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewPager2"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/txtName"
+        style="@style/BaseText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgItem" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--        android:text="@{check.checkContent, default=Content}"-->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtName"></com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager2"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tabLy" />
+
+    <android.widget.Button
+        android:id="@+id/btnShare"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/ic_send"
+        android:gravity="center"
+        android:onClick="@{onBtnClick}"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewPager2"></android.widget.Button>
+
+    <TextView
+        android:id="@+id/txtShare"
+        style="@style/BaseText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="3dp"
+        android:text="공유하기"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnShare" />
+
+    <android.widget.Button
+        android:id="@+id/btnBack"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="90dp"
+        android:background="@drawable/ic_baseline_keyboard_backspace_24"
+        android:onClick="@{onBtnClick}"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewPager2" />
+
+    <TextView
+        android:id="@+id/txtBack"
+        style="@style/BaseText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="90dp"
+        android:text="돌아가기"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnShare" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
 </layout>

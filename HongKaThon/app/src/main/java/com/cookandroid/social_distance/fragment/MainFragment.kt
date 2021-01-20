@@ -18,6 +18,7 @@ import com.cookandroid.social_distance.singleton.CoronaData
 
 class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 private lateinit var gpsTracker:GpsTracker
+
     override fun init() {
         super.init()
 

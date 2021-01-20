@@ -1,5 +1,6 @@
 package com.cookandroid.social_distance.fragment
 
+import android.text.Layout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -17,21 +18,12 @@ abstract class LevelFragment : BaseFragment<FragmentLevelBinding>(R.layout.fragm
     private val itemList = AreaFactory.areaList
     private lateinit var viewPager: ViewPager2
     abstract val tabTitle: Int
-
+    abstract fun backBtn()
     override fun init() {
         super.init()
     }
 
 
-
-
-
-//    private fun backBtn() {
-//        binding.btnBack.setOnClickListener {
-//            var action = LevelFragmentDirections.actionInformationFragmentToMainFragment()
-//            findNavController().navigate(action)
-//        }
-//    }
 //    // 공유하기 버튼
 //    private fun shareBtn() {
 //        binding.btnShare.setOnClickListener {
