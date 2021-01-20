@@ -1,5 +1,7 @@
 package com.cookandroid.social_distance
 
+import android.util.Log
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -17,7 +19,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private val appBarConfiguration by lazy {
         AppBarConfiguration(
-            setOf(R.id.mapFragment, R.id.mainFragment, R.id.itemDialog, R.id.informationFragment),
+            setOf(R.id.mapFragment, R.id.mainFragment),
             binding.drawer
         )
     }
@@ -47,6 +49,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     // AppBar에 생성되는 뒤로가기 버튼
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("test", "onResume")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("test", "onStrop")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d("test", "onRestart")
     }
 
     // 뒤로 가기 버튼을 누르면

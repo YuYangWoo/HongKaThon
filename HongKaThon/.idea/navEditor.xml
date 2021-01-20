@@ -13,34 +13,13 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="43" />
-                            <option name="y" value="446" />
+                            <option name="x" value="36" />
+                            <option name="y" value="424" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
                             <entry key="action_informationFragment_to_mainFragment">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                          </map>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
-                  <entry key="itemDialog">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="-415" />
-                            <option name="y" value="449" />
-                          </Point>
-                        </option>
-                        <option name="myPositions">
-                          <map>
-                            <entry key="action_itemDialog_to_informationFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -61,7 +40,7 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_mainFragment_to_itemDialog">
+                            <entry key="action_mainFragment_to_informationFragment">
                               <value>
                                 <LayoutPositions />
                               </value>

@@ -1,88 +1,110 @@
 package com.cookandroid.social_distance.fragment
 
+import android.content.Context
 import android.content.Intent
-import android.util.Log
+import androidx.activity.OnBackPressedCallback
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.cookandroid.social_distance.AreaFactory
 import com.cookandroid.social_distance.AreaItem
 import com.cookandroid.social_distance.R
-import com.cookandroid.social_distance.SplashActivity
+import com.cookandroid.social_distance.adapter.ViewPagerAdapter
 import com.cookandroid.social_distance.base.BaseFragment
 import com.cookandroid.social_distance.databinding.FragmentInformationBinding
+import com.google.android.material.tabs.TabLayoutMediator
 
-class InformationFragment : BaseFragment<FragmentInformationBinding>(R.layout.fragment_information) {
-    private val itemList = AreaFactory.areaList
-    private var checkedList = ArrayList<CheckItem>()
-    private val args:InformationFragmentArgs by navArgs()
-    lateinit var name: String
-    lateinit var level: String
+class InformationFragment :
+    BaseFragment<FragmentInformationBinding>(R.layout.fragment_information) {
+    private val args: InformationFragmentArgs by navArgs()
+    private lateinit var now: String
+    private val level: Array<Int> by lazy {
+        arrayOf(
+            R.string.ONE,
+            R.string.ONE_FIVE, R.string.TWO, R.string.TWO_FIVE, R.string.THREE
+        )
+    }
+    private lateinit var areaItem: AreaItem
+    private lateinit var callback: OnBackPressedCallback
     override fun init() {
         super.init()
-
-        //데이터 가져오기
-        name = args.name
-        level = args.level
-
-        /*
-        areaItem로 View를 업데이트하는 코드
-         */
-
-        check()
-        shareBtn()
-
-        // 데이터 바인딩
-        binding.check = checkedList[0]
-
+        // 데이터 전달
+        areaItem = args.checkItem
+        now = args.level
+        convert()
+        initViewPager()
+        initTabLayoutMediator()
+        btnClick()
+        binding.info = areaItem
     }
-    // 체크된 아이템 클래스
-    data class CheckItem(
-            var checkName:String,
-            var checkContent:String,
-            var checkImg:String
-    )
 
-    // 이름과 단계로 시설 체크
-    private fun check() {
-        /*
-        areaItem으로 바인딩
-        level같은 경우는 information[level]
-         */
-        for(i in itemList.indices) {
-            if(itemList[i].name == name) {
-                when (level) {
-                    "1단계" -> {
-                        checkedList = arrayListOf(CheckItem(itemList[i].name, itemList[i].one, itemList[i].img))
+    // 뷰페이저 adapter
+    private fun initViewPager() {
+        with(binding.viewPager2) {
+            adapter = ViewPagerAdapter().apply {
+                data = areaItem
+            }
+            setCurrentItem(now.toInt(), true)
+        }
+    }
+
+    // Tablayout Viewpager와 연결
+    private fun initTabLayoutMediator() {
+        TabLayoutMediator(binding.tabLy, binding.viewPager2) { tab, position ->
+            tab.text = getString(level[position])
+        }.attach()
+    }
+
+    // Button 클릭 이벤트
+    private fun btnClick() {
+        binding.setOnBtnClick {
+            when (it.id) {
+                R.id.btnShare -> {
+                    val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                        type = "text/plain"
+                        putExtra(
+                            Intent.EXTRA_TEXT,
+                            "${areaItem.name}\n${areaItem.information[now.toInt()]}"
+                        )
                     }
-                    "1.5단계" -> {
-                        checkedList = arrayListOf(CheckItem(itemList[i].name, itemList[i].onedotfive, itemList[i].img))
-                    }
-                    "2단계" -> {
-                        checkedList = arrayListOf(CheckItem(itemList[i].name, itemList[i].twostep, itemList[i].img))
-                    }
-                    "2.5단계" -> {
-                        checkedList = arrayListOf(CheckItem(itemList[i].name, itemList[i].twodotfivestep, itemList[i].img))
-                    }
-                    "3단계" -> {
-                        checkedList = arrayListOf(CheckItem(itemList[i].name, itemList[i].threestep, itemList[i].img))
-                    }
-                    else -> {
-                        Log.d("Error", "참조하지 못하는 인덱스")
-                    }
+                    startActivity(shareIntent)
                 }
             }
         }
     }
 
-    // 공유하기 버튼
-    private fun shareBtn() {
-        binding.btnShare.setOnClickListener {
-            val shareIntent = Intent(Intent.ACTION_SEND).apply {
-                type = "text/plain"
-                putExtra(Intent.EXTRA_TEXT, "${checkedList[0].checkName}\n${checkedList[0].checkContent}")
+    // 현재 단계에 맞게 변환
+    private fun convert() {
+        when (now) {
+            "1" -> {
+                now = AreaItem.ONE.toString()
             }
-
-            startActivity(shareIntent)
+            "1.5" -> {
+                now = AreaItem.ONE_FIVE.toString()
+            }
+            "2" -> {
+                now = AreaItem.TWO.toString()
+            }
+            "2.5" -> {
+                now = AreaItem.TWO_FIVE.toString()
+            }
+            "3" -> {
+                now = AreaItem.THREE.toString()
+            }
         }
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().navigate(InformationFragmentDirections.actionInformationFragmentToMainFragment())
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        callback.remove()
+    }
 }
+

@@ -1,32 +1,19 @@
 package com.cookandroid.social_distance
 
+import java.io.Serializable
+
 data class AreaItem(
-    var img : String,
-    var name: String ,
-    var one: String ,
-    var onedotfive: String,
-    var threestep: String ,
-    var twostep: String ,
-    var twodotfivestep: String
-    /*
-    informatin: String[]
-    0 => 1단계 정보
-    1 => 1.5단계 정보
-    2 => 2단계 정보
-    3 => 2.5단계 정보
-    4 => 3단계 정보
-     */
-) {
+        var img: String,
+        var name: String,
+        var information: List<String>
+) : Serializable {
+    constructor() : this("", "",  listOf())
 
-    /*
-    companion object
-    const val ONE = 0
-    const val ONE_DOT_FIVE = 1
-    .
-    .
-    .
-
-    information[ONE_DOT_FIVE]  vs  information[1] ?? => companion이 보기 좋다.
-     */
-    constructor() : this("", "", "", "", "", "", "")
+    companion object {
+        const val ONE = 0
+        const val ONE_FIVE = 1
+        const val TWO = 2
+        const val TWO_FIVE = 3
+        const val THREE = 4
+    }
 }

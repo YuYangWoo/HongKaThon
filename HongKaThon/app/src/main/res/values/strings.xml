@@ -10,4 +10,10 @@
     <string name="total">Total</string>
     <string name="cancel">Cancel</string>
     <string name="finish">Finish</string>
+    <string name="ONE">1단계</string>
+    <string name="ONE_FIVE">1.5단계</string>
+    <string name="TWO">2단계</string>
+    <string name="TWO_FIVE">2.5단계</string>
+    <string name="THREE">3단계</string>
+
 </resources>
