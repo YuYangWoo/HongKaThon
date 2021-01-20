@@ -1,49 +1,48 @@
 package com.cookandroid.social_distance.fragment
 
 import android.content.Intent
-import androidx.fragment.app.Fragment
+import android.util.Log
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
-import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.navigation.fragment.navArgs
+import androidx.viewpager2.widget.ViewPager2
+import com.cookandroid.social_distance.AreaItem
 import com.cookandroid.social_distance.R
+import com.cookandroid.social_distance.adapter.ViewPagerAdapter
 import com.cookandroid.social_distance.base.BaseFragment
 import com.cookandroid.social_distance.databinding.FragmentInformationBinding
-import com.cookandroid.social_distance.fragment.level.*
-import com.google.android.material.tabs.TabLayoutMediator
 
-class InformationFragment :
-    BaseFragment<FragmentInformationBinding>(R.layout.fragment_information) {
-    private val fragments by lazy {
-        arrayOf(OneFragment(), OneFiveFragment(), TwoFragment(), TwoFiveFragment(), ThreeFragment())
-    }
+class InformationFragment : BaseFragment<FragmentInformationBinding>(R.layout.fragment_information) {
+    private val args: InformationFragmentArgs by navArgs()
     private lateinit var action: NavDirections
+    private lateinit var areaItem: AreaItem
     override fun init() {
         super.init()
+
+//        initTabLayoutMediator()
+         areaItem = args.checkItem
+        Log.d("test", areaItem.information[0])
         initViewPager()
-        initTabLayoutMediator()
-        btnBack()
+        btnclick()
+        binding.info = areaItem
     }
 
     private fun initViewPager() {
-        binding.viewPager2.adapter = object : FragmentStateAdapter(this) {
-            override fun getItemCount(): Int {
-                return fragments.size
+        with(binding.viewPager2) {
+            adapter = ViewPagerAdapter().apply {
+                data = areaItem
             }
-
-            override fun createFragment(position: Int): Fragment {
-                return fragments[position]
-            }
-
         }
+
     }
 
-    private fun initTabLayoutMediator() {
-        TabLayoutMediator(binding.tabLy, binding.viewPager2) { tab, position ->
-            tab.text = getString(fragments[position].tabTitle)
-        }.attach()
-    }
+//    private fun initTabLayoutMediator() {
+//        TabLayoutMediator(binding.tabLy, binding.viewPager2) { tab, position ->
+//            tab.text = getString(levelList[position].tabTitle)
+//        }.attach()
+//    }
 
-    private fun btnBack() {
+    private fun btnclick() {
         binding.setOnBtnClick {
             when (it.id) {
                 R.id.btnBack -> {
@@ -51,15 +50,15 @@ class InformationFragment :
                     findNavController().navigate(action)
                 }
                 R.id.btnShare -> {
-            val shareIntent = Intent(Intent.ACTION_SEND).apply {
-                type = "text/plain"
+                    val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                        type = "text/plain"
 //                putExtra(Intent.EXTRA_TEXT, "${checkedList[0].checkName}\n${checkedList[0].checkContent}")
-            }
-            startActivity(shareIntent)
+                    }
+                    startActivity(shareIntent)
 
-    }
                 }
             }
         }
     }
+}
 

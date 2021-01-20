@@ -28,45 +28,8 @@
         <action
             android:id="@+id/action_informationFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/oneFiveFragment"
-        android:name="com.cookandroid.social_distance.fragment.level.OneFiveFragment"
-        android:label="OneFiveFragment" >
-        <action
-            android:id="@+id/action_oneFiveFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/oneFragment"
-        android:name="com.cookandroid.social_distance.fragment.level.OneFragment"
-        android:label="OneFragment" >
-        <action
-            android:id="@+id/action_oneFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/threeFragment"
-        android:name="com.cookandroid.social_distance.fragment.level.ThreeFragment"
-        android:label="ThreeFragment" >
-        <action
-            android:id="@+id/action_threeFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/twoFiveFragment"
-        android:name="com.cookandroid.social_distance.fragment.level.TwoFiveFragment"
-        android:label="TwoFiveFragment" >
-        <action
-            android:id="@+id/action_twoFiveFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/twoFragment"
-        android:name="com.cookandroid.social_distance.fragment.level.TwoFragment"
-        android:label="TwoFragment" >
-        <action
-            android:id="@+id/action_twoFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+        <argument
+            android:name="checkItem"
+            app:argType="com.cookandroid.social_distance.AreaItem" />
     </fragment>
 </navigation>

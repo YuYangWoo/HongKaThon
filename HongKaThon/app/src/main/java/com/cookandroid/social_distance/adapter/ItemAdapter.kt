@@ -1,6 +1,5 @@
 package com.cookandroid.social_distance.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
@@ -39,9 +38,8 @@ class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ListViewHolder>() {
 
         init {
             binding.root.setOnClickListener {
-                // 단계랑 그 전체 배열을 넘겨버려
-                Log.d("test",binding.main.toString())
-                var action = MainFragmentDirections.actionMainFragmentToInformationFragment()
+                var item: AreaItem =binding.main!!
+                var action = MainFragmentDirections.actionMainFragmentToInformationFragment(item)
                 itemView.findNavController().navigate(action)
             }
         }
