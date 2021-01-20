@@ -75,17 +75,18 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <android.widget.Button
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/btnShare"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginTop="29dp"
-                android:layout_marginEnd="47dp"
-                android:background="@drawable/ic_send"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/button_background"
                 android:gravity="center"
                 android:onClick="@{onBtnClick}"
+                android:src="@drawable/ic_send"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"></android.widget.Button>
+                app:layout_constraintTop_toTopOf="parent"></androidx.appcompat.widget.AppCompatImageButton>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

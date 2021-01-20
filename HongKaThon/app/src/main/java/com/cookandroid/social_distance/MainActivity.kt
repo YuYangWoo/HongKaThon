@@ -1,6 +1,7 @@
 package com.cookandroid.social_distance
 
 import android.util.Log
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -50,29 +51,29 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
+    override fun onResume() {
+        super.onResume()
+        Log.d("test", "onResume")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("test", "onStrop")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d("test", "onRestart")
+    }
+
     // 뒤로 가기 버튼을 누르면
     override fun onBackPressed() {
         with(binding) {
             if (drawer.isDrawerOpen(navigation)) {
                 drawer.closeDrawer(navigation)
             } else {
-              backPressCloseHandler.onBackPressed()
+                super.onBackPressed()
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("test","onResume")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d("test","onStrop")
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        Log.d("test","onRestart")
     }
 }
