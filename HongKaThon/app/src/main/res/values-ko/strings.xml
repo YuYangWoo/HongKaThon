@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">거리두기 지침</string>
+    <string name="infection">확진자 현황</string>
+    <string name="level">거리두기 단계</string>
+</resources>

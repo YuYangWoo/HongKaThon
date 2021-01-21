@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.RemoteViews
+import android.widget.Toast
 import com.cookandroid.social_distance.R
 import com.cookandroid.social_distance.gps.Region
 import com.cookandroid.social_distance.singleton.CoronaData
@@ -47,9 +48,7 @@ class CountryInformationWidget : AppWidgetProvider() {
     private fun getUpdatedView(context: Context, id: Int): RemoteViews {
         val intent = Intent(context, CountryInformationWidget::class.java).setAction(ACTION_COUNTRY_INFORMATION_WIDGET_UPDATE)
         val pending = PendingIntent.getBroadcast(context, 0, intent, 0)
-
         return RemoteViews(context.packageName, R.layout.widget_country_information).apply {
-            this.
             setTextViewText(R.id.patient, CoronaData.getCountryPatient().toString())
             setTextViewText(R.id.patientPlus, "+" + CoronaData.getCountryPatientPlus().toString())
             setTextViewText(R.id.underInspection, CoronaData.getCountryUnderInspection().toString())
@@ -59,8 +58,6 @@ class CountryInformationWidget : AppWidgetProvider() {
             setTextViewText(R.id.dead, CoronaData.getCountryDead().toString())
             setTextViewText(R.id.deadPlus, "+" + CoronaData.getCountryDeadPlus().toString())
             setOnClickPendingIntent(R.id.refresh, pending)
-            Log.d("PASSZ", CoronaData.getCountryPatient().toString())
-            Log.d("PASSZ", "Hi")
         }
     }
 }

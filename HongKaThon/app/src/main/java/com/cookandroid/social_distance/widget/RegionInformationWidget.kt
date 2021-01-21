@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.RemoteViews
+import android.widget.Toast
 import com.cookandroid.social_distance.R
 import com.cookandroid.social_distance.gps.Region
 import com.cookandroid.social_distance.singleton.CoronaData

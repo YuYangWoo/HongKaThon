@@ -1,5 +1,6 @@
 package com.cookandroid.social_distance
 
+import android.app.Activity
 import android.appwidget.AppWidgetManager
 import android.content.Intent
 import android.view.*
@@ -23,33 +24,6 @@ class WidgetActivity : BaseActivity<ActivityWidgetBinding>(R.layout.activity_wid
         super.init()
         initSupportActionBar()
         initRecyclerView()
-        initSelectionTracker()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        MenuInflater(this).inflate(R.menu.activity_widget_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
-            R.id.cancel -> {
-                setResult(RESULT_CANCELED)
-                finish()
-            }
-            R.id.finish -> {
-                if (regionAdapter.tracker?.selection?.isEmpty == true) {
-                    Toast.makeText(this, "지역을 선택해주세요.", Toast.LENGTH_SHORT).show()
-                } else {
-                    getSharedPreferences("Widget", MODE_PRIVATE).edit().putInt(id.toString(),
-                        regionAdapter.tracker?.selection?.first()!!.toInt()
-                    ).apply()
-                    setResult(RESULT_OK, Intent().putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, id))
-                    finish()
-                }
-            }
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     private fun initSupportActionBar() {
@@ -62,23 +36,7 @@ class WidgetActivity : BaseActivity<ActivityWidgetBinding>(R.layout.activity_wid
         }
     }
 
-    private fun initSelectionTracker() {
-        with(binding.recyclerView) {
-            regionAdapter.tracker = SelectionTracker.Builder(
-                "Selection",
-                this,
-                StableIdKeyProvider(this),
-                RegionAdapter.RegionDetailsLookup(this),
-                StorageStrategy.createLongStorage()
-            ).withSelectionPredicate(
-                SelectionPredicates.createSelectSingleAnything()
-            ).build()
-        }
-    }
-
-    class RegionAdapter : BaseAdapter<Region>(RegionItemCallback()) {
-        var tracker: SelectionTracker<Long>? = null
-
+    inner class RegionAdapter : BaseAdapter<Region>(RegionItemCallback()) {
         init {
             setHasStableIds(true)
             submitList(Region.values().toMutableList())
@@ -95,47 +53,26 @@ class WidgetActivity : BaseActivity<ActivityWidgetBinding>(R.layout.activity_wid
         inner class RegionHolder(binding: HolderRegionBinding) : BaseHolder<HolderRegionBinding, Region>(binding) {
             init {
                 itemView.setOnClickListener {
-                    tracker?.select(itemId)
+                    getSharedPreferences("Widget", MODE_PRIVATE).edit().putInt(id.toString(), element.ordinal).apply()
+                    setResult(RESULT_OK, Intent().putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, id))
+                    finish()
                 }
             }
 
             override fun bind(element: Region) {
                 super.bind(element)
                 binding.region = element
-
-                itemView.isActivated = tracker?.isSelected(itemId) ?: false
             }
         }
+    }
 
-        class RegionDetailsLookup(private val recyclerView: RecyclerView) : ItemDetailsLookup<Long>() {
-            override fun getItemDetails(e: MotionEvent): ItemDetails<Long>? {
-                val view = recyclerView.findChildViewUnder(e.x, e.y) ?: return null
-
-                val holder = recyclerView.getChildViewHolder(view)
-                return if (holder is RegionHolder) {
-                    object : ItemDetails<Long>() {
-                        override fun getPosition(): Int {
-                            return holder.adapterPosition
-                        }
-
-                        override fun getSelectionKey(): Long {
-                            return holder.itemId
-                        }
-                    }
-                } else {
-                    null
-                }
-            }
+    class RegionItemCallback : DiffUtil.ItemCallback<Region>() {
+        override fun areItemsTheSame(oldItem: Region, newItem: Region): Boolean {
+            return oldItem.ordinal == newItem.ordinal
         }
 
-        class RegionItemCallback() : DiffUtil.ItemCallback<Region>() {
-            override fun areItemsTheSame(oldItem: Region, newItem: Region): Boolean {
-                return oldItem.ordinal == newItem.ordinal
-            }
-
-            override fun areContentsTheSame(oldItem: Region, newItem: Region): Boolean {
-                return true
-            }
+        override fun areContentsTheSame(oldItem: Region, newItem: Region): Boolean {
+            return true
         }
     }
 }
