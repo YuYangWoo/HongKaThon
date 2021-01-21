@@ -63,7 +63,7 @@ enum class Region(val korean: String) {
                     Quarantine
                 }
                 else -> {
-                    throw IllegalStateException("존재하지 않는 지역 : $name")
+                    Seoul
                 }
             }
         }
