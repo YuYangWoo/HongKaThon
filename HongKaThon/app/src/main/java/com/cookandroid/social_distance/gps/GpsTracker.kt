@@ -11,7 +11,6 @@ import android.os.IBinder
 import android.util.Log
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import com.cookandroid.social_distance.fragment.MainFragment
 import java.io.IOException
 import java.util.*
 
