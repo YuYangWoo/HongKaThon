@@ -2,6 +2,11 @@ package com.cookandroid.social_distance.fragment
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -32,8 +37,13 @@ class InformationFragment :
         convert()
         initViewPager()
         initTabLayoutMediator()
-        btnClick()
         binding.info = areaItem
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
     }
 
     // 뷰페이저 adapter
@@ -51,24 +61,6 @@ class InformationFragment :
         TabLayoutMediator(binding.tabLy, binding.viewPager2) { tab, position ->
             tab.text = getString(level[position])
         }.attach()
-    }
-
-    // Button 클릭 이벤트
-    private fun btnClick() {
-        binding.setOnBtnClick {
-            when (it.id) {
-                R.id.btnShare -> {
-                    val shareIntent = Intent(Intent.ACTION_SEND).apply {
-                        type = "text/plain"
-                        putExtra(
-                            Intent.EXTRA_TEXT,
-                            "${areaItem.name}\n${areaItem.information[now.toInt()]}"
-                        )
-                    }
-                    startActivity(shareIntent)
-                }
-            }
-        }
     }
 
     // 현재 단계에 맞게 변환
@@ -106,5 +98,31 @@ class InformationFragment :
         super.onDetach()
         callback.remove()
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.fragment_information_menu, menu)
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.share -> {
+                val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                    type = "text/plain"
+                    putExtra(
+                        Intent.EXTRA_TEXT,
+                        "${areaItem.name}\n${areaItem.information[now.toInt()]}"
+                    )
+                }
+                startActivity(shareIntent)
+                true
+            }
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
+        }
+    }
+
 }
 

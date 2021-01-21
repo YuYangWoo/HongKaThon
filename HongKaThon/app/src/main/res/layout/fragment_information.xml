@@ -4,14 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="info"
             type="com.cookandroid.social_distance.AreaItem" />
-
-        <variable
-            name="onBtnClick"
-            type="android.view.View.OnClickListener" />
     </data>
 
     <ScrollView
@@ -74,20 +69,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/btnShare"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/button_background"
-                android:gravity="center"
-                android:onClick="@{onBtnClick}"
-                android:src="@drawable/ic_send"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"></androidx.appcompat.widget.AppCompatImageButton>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>
