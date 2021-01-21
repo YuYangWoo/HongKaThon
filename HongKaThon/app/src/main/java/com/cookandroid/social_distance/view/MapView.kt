@@ -43,7 +43,7 @@ class MapView : WebView {
         webViewClient = WebViewClient()
         settings.domStorageEnabled = true
 
-        setSocialInfection()
+        setSocialDistanceLevel()
     }
 
     fun setSocialDistanceLevel() {
