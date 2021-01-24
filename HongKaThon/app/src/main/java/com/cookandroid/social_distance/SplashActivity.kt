@@ -16,13 +16,12 @@ import com.cookandroid.social_distance.databinding.ActivitySplashBinding
 
 class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_splash) {
     private val splashTime: Long = 2000
-
+    var areraItem = AreaFactory.areaList
     var REQUIRED_PERMISSIONS = arrayOf(
             android.Manifest.permission.ACCESS_FINE_LOCATION,
             android.Manifest.permission.ACCESS_COARSE_LOCATION,
             android.Manifest.permission.ACCESS_BACKGROUND_LOCATION
     )
-    var areaList = AreaFactory.areaList
 
     override fun init() {
         super.init()
@@ -32,10 +31,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
     private fun check() {
         if (!checkLocationServicesStatus()) {
             showDialogForLocationServiceSetting()
-//            // 비동기 처리 필요함.
-//            if(checkLocationServicesStatus()) {
-//                requestRuntimePermissions()
-//            }
         } else {
             requestRuntimePermissions()
         }
@@ -131,12 +126,12 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 
     }
 
-
     private fun checkLocationServicesStatus(): Boolean {
         val locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
         return (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER))
     }
+
     companion object {
         private const val GPS_ENABLE_REQUEST_CODE = 2001
         const val TAG = "SplashActivity"
