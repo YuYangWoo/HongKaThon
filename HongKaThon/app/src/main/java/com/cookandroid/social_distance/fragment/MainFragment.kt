@@ -1,18 +1,21 @@
 package com.cookandroid.social_distance.fragment
 
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.style.RelativeSizeSpan
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.GridLayoutManager
 import com.cookandroid.social_distance.AreaFactory
 import com.cookandroid.social_distance.R
-import com.cookandroid.social_distance.adapter.ItemAdapter
+import com.cookandroid.social_distance.adapter.AreaAdapter
 import com.cookandroid.social_distance.base.BaseFragment
 import com.cookandroid.social_distance.databinding.FragmentMainBinding
 import com.cookandroid.social_distance.gps.GpsTracker
@@ -63,7 +66,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
     // 리사이클러뷰 adapt
     private fun setRecyclerView() {
         with(binding.recyclerMain) {
-            adapter = ItemAdapter().apply {
+            adapter = AreaAdapter().apply {
                 data = AreaFactory.areaList
                 notifyDataSetChanged()
             }
@@ -110,6 +113,31 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
     override fun onDetach() {
         super.onDetach()
         callback.remove()
+    }
+
+    // 툴바메뉴 활성화
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.fragment_information_menu, menu)
+    }
+
+    // 툴바기능 옵션메뉴 활성화
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    // 공유하기 활성화
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.option -> {
+
+                true
+            }
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
+        }
     }
 }
 

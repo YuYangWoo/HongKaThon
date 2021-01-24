@@ -11,7 +11,7 @@ import com.cookandroid.social_distance.gps.GpsTracker
 import com.cookandroid.social_distance.singleton.CoronaData
 
 
-class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ListViewHolder>() {
+class AreaAdapter : RecyclerView.Adapter<AreaAdapter.ListViewHolder>() {
     var data = ArrayList<AreaItem>()
 
 

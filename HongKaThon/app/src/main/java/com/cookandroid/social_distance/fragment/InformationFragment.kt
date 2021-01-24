@@ -13,7 +13,7 @@ import androidx.navigation.fragment.navArgs
 import com.cookandroid.social_distance.AreaItem
 import com.cookandroid.social_distance.CubePageTransformer
 import com.cookandroid.social_distance.R
-import com.cookandroid.social_distance.adapter.ViewPagerAdapter
+import com.cookandroid.social_distance.adapter.InformationAdapter
 import com.cookandroid.social_distance.base.BaseFragment
 import com.cookandroid.social_distance.databinding.FragmentInformationBinding
 import com.google.android.material.tabs.TabLayoutMediator
@@ -60,7 +60,7 @@ class InformationFragment :
         with(binding.viewPager2) {
             offscreenPageLimit = 5
             setPageTransformer(CubePageTransformer())
-            adapter = ViewPagerAdapter().apply {
+            adapter = InformationAdapter().apply {
                 data = areaItem
             }
             setCurrentItem(now.toInt(), true)
