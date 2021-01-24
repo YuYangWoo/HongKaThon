@@ -12,6 +12,7 @@ import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import com.cookandroid.social_distance.base.BaseActivity
 import com.cookandroid.social_distance.databinding.ActivitySplashBinding
+import com.cookandroid.social_distance.singleton.AreaFactory
 
 
 class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_splash) {

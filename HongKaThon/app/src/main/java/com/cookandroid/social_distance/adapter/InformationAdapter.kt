@@ -21,7 +21,7 @@ class InformationAdapter : RecyclerView.Adapter<InformationAdapter.CheckHolder>(
         return data.information.size
     }
 
-    class CheckHolder(var binding:HolderCheckItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class CheckHolder(var binding: HolderCheckItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(data:String) {
             binding.data = data
         }

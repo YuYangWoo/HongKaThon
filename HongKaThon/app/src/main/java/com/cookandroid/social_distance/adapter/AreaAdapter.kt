@@ -14,7 +14,6 @@ import com.cookandroid.social_distance.singleton.CoronaData
 class AreaAdapter : RecyclerView.Adapter<AreaAdapter.ListViewHolder>() {
     var data = ArrayList<AreaItem>()
 
-
     // 홀더 만들기
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val binding = HolderListBinding.inflate(LayoutInflater.from(parent.context), parent, false)

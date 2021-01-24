@@ -1,7 +1,6 @@
 package com.cookandroid.social_distance.fragment
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
@@ -12,8 +11,9 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.cookandroid.social_distance.AreaFactory
+import com.cookandroid.social_distance.singleton.AreaFactory
 import com.cookandroid.social_distance.R
 import com.cookandroid.social_distance.adapter.AreaAdapter
 import com.cookandroid.social_distance.base.BaseFragment
@@ -118,7 +118,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
     // 툴바메뉴 활성화
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.fragment_information_menu, menu)
+        inflater.inflate(R.menu.fragment_main, menu)
     }
 
     // 툴바기능 옵션메뉴 활성화
@@ -131,7 +131,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             R.id.option -> {
-
+                findNavController().navigate(MainFragmentDirections.actionMainFragmentToOptionFragment())
                 true
             }
             else -> {
