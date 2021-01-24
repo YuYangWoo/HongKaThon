@@ -81,6 +81,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
         }
     }
 
+    // BackPressed 이벤트 정의
     override fun onAttach(context: Context) {
         super.onAttach(context)
         callback = object : OnBackPressedCallback(true) {
@@ -105,6 +106,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)
     }
 
+    // 프래그먼트 떨어질 때 callback메서드 삭제
     override fun onDetach() {
         super.onDetach()
         callback.remove()

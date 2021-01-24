@@ -11,8 +11,8 @@ import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.cookandroid.social_distance.AreaItem
+import com.cookandroid.social_distance.CubePageTransformer
 import com.cookandroid.social_distance.R
-import com.cookandroid.social_distance.ZoomInPageTransformer
 import com.cookandroid.social_distance.adapter.ViewPagerAdapter
 import com.cookandroid.social_distance.base.BaseFragment
 import com.cookandroid.social_distance.databinding.FragmentInformationBinding
@@ -38,10 +38,15 @@ class InformationFragment :
         // 데이터 전달
         areaItem = args.checkItem
         now = args.level
+
+        // 함수호출
         convert()
         initViewPager()
         initTabLayoutMediator()
+
+        // 바인딩
         binding.info = areaItem
+        binding.item = this
     }
 
     // 툴바기능 옵션메뉴 활성화
@@ -54,7 +59,7 @@ class InformationFragment :
     private fun initViewPager() {
         with(binding.viewPager2) {
             offscreenPageLimit = 5
-            setPageTransformer(ZoomInPageTransformer())
+            setPageTransformer(CubePageTransformer())
             adapter = ViewPagerAdapter().apply {
                 data = areaItem
             }

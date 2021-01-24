@@ -1,7 +1,6 @@
 package com.cookandroid.social_distance
 
 import android.util.Log
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -9,6 +8,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.cookandroid.social_distance.base.BaseActivity
 import com.cookandroid.social_distance.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {

@@ -28,6 +28,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         check()
     }
 
+    // 위치기능 on/off 확인
     private fun check() {
         if (!checkLocationServicesStatus()) {
             showDialogForLocationServiceSetting()
@@ -36,6 +37,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         }
     }
 
+    // 위치 권한 요청
     private fun requestRuntimePermissions() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return
@@ -56,7 +58,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         }
     }
 
-
+    // 권한 요청 결과 받기
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>,
                                             grantResults: IntArray) {
         when (requestCode) {
@@ -87,6 +89,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         }
     }
 
+    // 다이얼로그로 권한 얻기
     private fun showDialogToGetPermission() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("권한 요청")
@@ -126,6 +129,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 
     }
 
+    // 위치 서비스 상태확인
     private fun checkLocationServicesStatus(): Boolean {
         val locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
         return (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)

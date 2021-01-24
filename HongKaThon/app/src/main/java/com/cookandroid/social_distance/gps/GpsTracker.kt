@@ -107,8 +107,6 @@ class GpsTracker(context: Context) : Service(), LocationListener {
 
     // 주소로 변환
     private fun getCurrentAddress(latitude: Double, longitude: Double): String {
-
-        //지오코더... GPS를 주소로 변환
         val geocoder = Geocoder(mContext, Locale.getDefault())
         val addresses: List<Address>?
         addresses = try {
@@ -160,6 +158,7 @@ class GpsTracker(context: Context) : Service(), LocationListener {
         getLocation()
     }
 
+    // 지역얻기
     fun getArea(): Region {
         val latitude: Double = getLatitude()
         val longitude: Double = getLongitude()

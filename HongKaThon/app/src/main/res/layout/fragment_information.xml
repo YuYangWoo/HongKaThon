@@ -7,6 +7,10 @@
         <variable
             name="info"
             type="com.cookandroid.social_distance.AreaItem" />
+
+        <variable
+            name="item"
+            type="com.cookandroid.social_distance.fragment.InformationFragment" />
     </data>
 
     <ScrollView
