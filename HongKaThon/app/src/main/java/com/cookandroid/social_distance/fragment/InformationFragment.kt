@@ -12,10 +12,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.cookandroid.social_distance.AreaItem
 import com.cookandroid.social_distance.R
+import com.cookandroid.social_distance.ZoomInPageTransformer
 import com.cookandroid.social_distance.adapter.ViewPagerAdapter
 import com.cookandroid.social_distance.base.BaseFragment
 import com.cookandroid.social_distance.databinding.FragmentInformationBinding
 import com.google.android.material.tabs.TabLayoutMediator
+
 
 class InformationFragment :
     BaseFragment<FragmentInformationBinding>(R.layout.fragment_information) {
@@ -29,6 +31,8 @@ class InformationFragment :
     }
     private lateinit var areaItem: AreaItem
     private lateinit var callback: OnBackPressedCallback
+
+    // Init
     override fun init() {
         super.init()
         // 데이터 전달
@@ -38,9 +42,9 @@ class InformationFragment :
         initViewPager()
         initTabLayoutMediator()
         binding.info = areaItem
-
     }
 
+    // 툴바기능 옵션메뉴 활성화
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
@@ -49,6 +53,8 @@ class InformationFragment :
     // 뷰페이저 adapter
     private fun initViewPager() {
         with(binding.viewPager2) {
+            offscreenPageLimit = 5
+            setPageTransformer(ZoomInPageTransformer())
             adapter = ViewPagerAdapter().apply {
                 data = areaItem
             }
@@ -84,6 +90,7 @@ class InformationFragment :
         }
     }
 
+    // BackPressed 뒤로가기 활성화
     override fun onAttach(context: Context) {
         super.onAttach(context)
         callback = object : OnBackPressedCallback(true) {
@@ -94,17 +101,19 @@ class InformationFragment :
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)
     }
 
+    // 프래그먼트 떨어질 때 callback메서드 삭제
     override fun onDetach() {
         super.onDetach()
         callback.remove()
     }
 
+    // 툴바메뉴 활성화
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.fragment_information_menu, menu)
     }
 
-
+    // 공유하기 활성화
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             R.id.share -> {
@@ -123,6 +132,5 @@ class InformationFragment :
             }
         }
     }
-
 }
 

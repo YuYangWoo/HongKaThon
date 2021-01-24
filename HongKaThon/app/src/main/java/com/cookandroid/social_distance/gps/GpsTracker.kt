@@ -14,7 +14,6 @@ import androidx.core.content.ContextCompat
 import java.io.IOException
 import java.util.*
 
-
 class GpsTracker(context: Context) : Service(), LocationListener {
     private var mContext: Context = context
     private var location : Location ?= null
