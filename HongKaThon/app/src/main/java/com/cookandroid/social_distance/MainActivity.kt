@@ -51,21 +51,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    override fun onResume() {
-        super.onResume()
-        Log.d("test", "onResume")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d("test", "onStrop")
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        Log.d("test", "onRestart")
-    }
-
     // 뒤로 가기 버튼을 누르면
     override fun onBackPressed() {
         with(binding) {

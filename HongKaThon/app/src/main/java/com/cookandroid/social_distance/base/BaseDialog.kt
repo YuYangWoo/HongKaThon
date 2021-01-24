@@ -7,17 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.DataBindingUtil.setContentView
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
 
-abstract class BaseDialog<T : ViewDataBinding>(val layoutId: Int) : DialogFragment() {
+abstract class BaseDialog<T : ViewDataBinding>(context: Context, val layoutId: Int) : Dialog(context) {
     protected lateinit var binding: T
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = DataBindingUtil.inflate(LayoutInflater.from(context), layoutId, null, false)
         init()
-        return binding.root
+        setContentView(binding.root)
     }
     protected open fun init() {
 
