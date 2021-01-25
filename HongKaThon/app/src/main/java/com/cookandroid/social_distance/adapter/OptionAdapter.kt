@@ -8,10 +8,10 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.cookandroid.social_distance.databinding.HolderOptionBinding
 import com.cookandroid.social_distance.dialog.OptionDialog
-import com.cookandroid.social_distance.fragment.OptionFragmentDirections
+import com.cookandroid.social_distance.item.OptionItem
 
 class OptionAdapter :RecyclerView.Adapter<OptionAdapter.OptionHolder>() {
-    var data = ArrayList<String>()
+    var data = ArrayList<OptionItem>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OptionHolder {
         val binding = HolderOptionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return OptionHolder(binding)
@@ -26,14 +26,12 @@ class OptionAdapter :RecyclerView.Adapter<OptionAdapter.OptionHolder>() {
     }
 
     class OptionHolder(private val binding: HolderOptionBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: String) {
+        fun onBind(data: OptionItem) {
             binding.list = data
         }
         init {
             binding.root.setOnClickListener {
-                Log.d("test", binding.list.toString())
-                Log.d("test", binding.root.toString())
-              OptionDialog(itemView.context, binding.list.toString()).show()
+              OptionDialog(itemView.context, binding.list!!).show()
             }
         }
     }

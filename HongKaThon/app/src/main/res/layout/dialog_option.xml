@@ -5,7 +5,7 @@
 
         <variable
             name="info"
-            type="com.cookandroid.social_distance.dialog.OptionDialog" />
+            type="com.cookandroid.social_distance.item.OptionItem" />
     </data>
 <ScrollView
     android:layout_width="match_parent"
@@ -16,9 +16,17 @@
         android:orientation="vertical">
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            style="@style/BaseText"
+            android:text="@{info.title}"
+            />
+        <TextView
             android:id="@+id/txtContent"
             style="@style/BaseText"
             android:layout_width="300dp"
+            android:text="@{info.content}"
             android:layout_height="300dp"
             android:textSize="15dp" />
     </LinearLayout>

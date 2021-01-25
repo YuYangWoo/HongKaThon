@@ -5,7 +5,7 @@
 
         <variable
             name="list"
-            type="String" />
+            type="com.cookandroid.social_distance.item.OptionItem" />
     </data>
 
 
@@ -22,6 +22,6 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center"
-            android:text="@{list}" />
+            android:text="@{list.title}" />
     </LinearLayout>
 </layout>
