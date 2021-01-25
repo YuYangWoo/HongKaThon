@@ -95,23 +95,6 @@ class InformationFragment :
         }
     }
 
-    // BackPressed 뒤로가기 활성화
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                findNavController().navigate(InformationFragmentDirections.actionInformationFragmentToMainFragment())
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
-    }
-
-    // 프래그먼트 떨어질 때 callback메서드 삭제
-    override fun onDetach() {
-        super.onDetach()
-        callback.remove()
-    }
-
     // 툴바메뉴 활성화
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
