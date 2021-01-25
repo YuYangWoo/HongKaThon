@@ -4,16 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.cookandroid.social_distance.AreaItem
+import com.cookandroid.social_distance.item.AreaItem
 import com.cookandroid.social_distance.databinding.HolderListBinding
 import com.cookandroid.social_distance.fragment.MainFragmentDirections
 import com.cookandroid.social_distance.gps.GpsTracker
 import com.cookandroid.social_distance.singleton.CoronaData
 
 
-class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ListViewHolder>() {
+class AreaAdapter : RecyclerView.Adapter<AreaAdapter.ListViewHolder>() {
     var data = ArrayList<AreaItem>()
-
 
     // 홀더 만들기
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {

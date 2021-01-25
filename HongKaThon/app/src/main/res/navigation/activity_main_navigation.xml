@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_mainFragment_to_informationFragment"
             app:destination="@id/informationFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_optionFragment"
+            app:destination="@id/optionFragment" />
     </fragment>
     <fragment
         android:id="@+id/informationFragment"
@@ -30,10 +33,14 @@
             app:destination="@id/mainFragment" />
         <argument
             android:name="checkItem"
-            app:argType="com.cookandroid.social_distance.AreaItem" />
+            app:argType="com.cookandroid.social_distance.item.AreaItem" />
         <argument
             android:name="level"
             app:argType="string"
             android:defaultValue='""' />
     </fragment>
+    <fragment
+        android:id="@+id/optionFragment"
+        android:name="com.cookandroid.social_distance.fragment.OptionFragment"
+        android:label="환경설정" />
 </navigation>

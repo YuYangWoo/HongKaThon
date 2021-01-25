@@ -1,6 +1,5 @@
 package com.cookandroid.social_distance.fragment
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -8,12 +7,11 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.OnBackPressedCallback
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.cookandroid.social_distance.AreaItem
+import com.cookandroid.social_distance.item.AreaItem
 import com.cookandroid.social_distance.CubePageTransformer
 import com.cookandroid.social_distance.R
-import com.cookandroid.social_distance.adapter.ViewPagerAdapter
+import com.cookandroid.social_distance.adapter.InformationAdapter
 import com.cookandroid.social_distance.base.BaseFragment
 import com.cookandroid.social_distance.databinding.FragmentInformationBinding
 import com.google.android.material.tabs.TabLayoutMediator
@@ -60,7 +58,7 @@ class InformationFragment :
         with(binding.viewPager2) {
             offscreenPageLimit = 5
             setPageTransformer(CubePageTransformer())
-            adapter = ViewPagerAdapter().apply {
+            adapter = InformationAdapter().apply {
                 data = areaItem
             }
             setCurrentItem(now.toInt(), true)
@@ -93,23 +91,6 @@ class InformationFragment :
                 now = AreaItem.THREE.toString()
             }
         }
-    }
-
-    // BackPressed 뒤로가기 활성화
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                findNavController().navigate(InformationFragmentDirections.actionInformationFragmentToMainFragment())
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
-    }
-
-    // 프래그먼트 떨어질 때 callback메서드 삭제
-    override fun onDetach() {
-        super.onDetach()
-        callback.remove()
     }
 
     // 툴바메뉴 활성화

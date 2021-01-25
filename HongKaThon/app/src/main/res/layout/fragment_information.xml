@@ -6,7 +6,7 @@
     <data>
         <variable
             name="info"
-            type="com.cookandroid.social_distance.AreaItem" />
+            type="com.cookandroid.social_distance.item.AreaItem" />
 
         <variable
             name="item"
@@ -56,23 +56,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtName"/>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cstLyMiddle"
-                android:layout_width="0dp"
-                android:layout_height="370dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tabLy">
-
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/viewPager2"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                   app:layout_constraintTop_toBottomOf="@+id/tabLy" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

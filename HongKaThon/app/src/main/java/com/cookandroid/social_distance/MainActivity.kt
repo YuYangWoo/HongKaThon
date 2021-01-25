@@ -19,13 +19,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private val appBarConfiguration by lazy {
         AppBarConfiguration(
-            setOf(R.id.mapFragment, R.id.mainFragment),
+            setOf(R.id.mainFragment),
             binding.drawer
         )
     }
-
-    // BackpressCloseHandler 객체화
-    private val backPressCloseHandler = BackPressCloseHandler(this)
 
     override fun init() {
         super.init()
@@ -49,21 +46,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     // AppBar에 생성되는 뒤로가기 버튼
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("test", "onResume")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d("test", "onStrop")
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        Log.d("test", "onRestart")
     }
 
     // 뒤로 가기 버튼을 누르면
