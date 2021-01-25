@@ -134,7 +134,8 @@ class OptionFragment : BaseFragment<FragmentOptionBinding>(R.layout.fragment_opt
                 "    // Firebase\n" +
                 "    implementation platform('com.google.firebase:firebase-bom:26.2.0')\n" +
                 "    implementation 'com.google.firebase:firebase-analytics-ktx'"),
-        OptionItem("개발자 소개", "개발자 : YuYangWoo, KangTaeJong")
+        OptionItem("개발자 소개", "개발자 : YuYangWoo, KangTaeJong"),
+            OptionItem("사용방법 및 앱 소개","https://github.com/YuYangWoo/HongKaThon")
         )
     }
  }

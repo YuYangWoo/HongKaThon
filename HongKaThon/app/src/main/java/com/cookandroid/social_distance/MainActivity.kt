@@ -24,9 +24,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         )
     }
 
-    // BackpressCloseHandler 객체화
-    private val backPressCloseHandler = BackPressCloseHandler(this)
-
     override fun init() {
         super.init()
         initSupportActionBar()

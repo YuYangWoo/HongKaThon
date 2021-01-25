@@ -1,7 +1,7 @@
 package com.cookandroid.social_distance.singleton
 
 import android.util.Log
-import com.cookandroid.social_distance.AreaItem
+import com.cookandroid.social_distance.item.AreaItem
 import com.google.firebase.database.*
 
 object AreaFactory {

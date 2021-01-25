@@ -3,7 +3,7 @@ package com.cookandroid.social_distance.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.cookandroid.social_distance.AreaItem
+import com.cookandroid.social_distance.item.AreaItem
 import com.cookandroid.social_distance.databinding.HolderCheckItemBinding
 
 class InformationAdapter : RecyclerView.Adapter<InformationAdapter.CheckHolder>() {

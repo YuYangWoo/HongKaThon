@@ -33,7 +33,7 @@
             app:destination="@id/mainFragment" />
         <argument
             android:name="checkItem"
-            app:argType="com.cookandroid.social_distance.AreaItem" />
+            app:argType="com.cookandroid.social_distance.item.AreaItem" />
         <argument
             android:name="level"
             app:argType="string"

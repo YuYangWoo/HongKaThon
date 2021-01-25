@@ -2,6 +2,8 @@ package com.cookandroid.social_distance.dialog
 
 import android.content.Context
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
+import android.text.util.Linkify
 import android.util.Log
 import android.view.View
 import androidx.navigation.fragment.navArgs
@@ -15,5 +17,9 @@ private val check = check
     override fun init() {
         super.init()
         binding.info = check
+        if(check.title == "사용방법 및 앱 소개") {
+            binding.txtContent.movementMethod = LinkMovementMethod.getInstance()
+            binding.txtContent.autoLinkMask = Linkify.WEB_URLS
+        }
     }
 }

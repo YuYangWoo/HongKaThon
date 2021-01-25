@@ -1,4 +1,4 @@
-package com.cookandroid.social_distance
+package com.cookandroid.social_distance.item
 
 import java.io.Serializable
 

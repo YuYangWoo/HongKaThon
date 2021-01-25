@@ -13,6 +13,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/txtTitle"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -22,7 +23,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        <TextView
+        <android.widget.TextView
             android:id="@+id/txtContent"
             style="@style/BaseText"
             android:layout_width="300dp"

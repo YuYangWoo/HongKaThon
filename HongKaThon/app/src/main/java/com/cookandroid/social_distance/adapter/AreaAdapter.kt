@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.cookandroid.social_distance.AreaItem
+import com.cookandroid.social_distance.item.AreaItem
 import com.cookandroid.social_distance.databinding.HolderListBinding
 import com.cookandroid.social_distance.fragment.MainFragmentDirections
 import com.cookandroid.social_distance.gps.GpsTracker

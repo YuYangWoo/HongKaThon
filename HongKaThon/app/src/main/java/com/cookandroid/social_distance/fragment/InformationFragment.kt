@@ -1,6 +1,5 @@
 package com.cookandroid.social_distance.fragment
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -8,9 +7,8 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.OnBackPressedCallback
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.cookandroid.social_distance.AreaItem
+import com.cookandroid.social_distance.item.AreaItem
 import com.cookandroid.social_distance.CubePageTransformer
 import com.cookandroid.social_distance.R
 import com.cookandroid.social_distance.adapter.InformationAdapter

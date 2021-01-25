@@ -6,7 +6,7 @@
     <data>
         <variable
             name="info"
-            type="com.cookandroid.social_distance.AreaItem" />
+            type="com.cookandroid.social_distance.item.AreaItem" />
 
         <variable
             name="item"
