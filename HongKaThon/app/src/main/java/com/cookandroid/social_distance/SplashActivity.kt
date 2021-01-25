@@ -18,11 +18,6 @@ import com.cookandroid.social_distance.singleton.AreaFactory
 class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_splash) {
     private val splashTime: Long = 2000
     var areraItem = AreaFactory.areaList
-    var REQUIRED_PERMISSIONS = arrayOf(
-            android.Manifest.permission.ACCESS_FINE_LOCATION,
-            android.Manifest.permission.ACCESS_COARSE_LOCATION,
-            android.Manifest.permission.ACCESS_BACKGROUND_LOCATION
-    )
 
     override fun init() {
         super.init()
@@ -44,18 +39,17 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             return
         }
 
-        if (checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                &&checkSelfPermission(android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
-                checkSelfPermission(android.Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-
+        if (checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION)
+            == PackageManager.PERMISSION_GRANTED) {
             // 2초 지나고 화면 전환
             Handler(Looper.getMainLooper()).postDelayed({
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }, splashTime)
         } else {
-            requestPermissions(REQUIRED_PERMISSIONS,
-                    PERMISSION_REQUEST_CODE)
+            requestPermissions(arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
+                PERMISSION_REQUEST_CODE)
+
         }
     }
 
@@ -67,9 +61,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
                 if (grantResults.isEmpty()) {
                     throw RuntimeException("권한이 비어있습니다.")
                 }
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED &&
-                        grantResults[1] == PackageManager.PERMISSION_GRANTED &&
-                        grantResults[2] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                     // 2초 지나고 화면 전환
                     Handler(Looper.getMainLooper()).postDelayed({
@@ -79,8 +71,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
                 } else {
                     if (shouldShowRequestPermissionRationale(android.Manifest.permission.ACCESS_FINE_LOCATION)) {
                         Log.d(TAG, "사용자가 권한요청을 거부했습니다. 계속 요청하겠습니다.")
-                        requestPermissions(REQUIRED_PERMISSIONS,
-                                PERMISSION_REQUEST_CODE)
+                        requestPermissions(arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
+                            PERMISSION_REQUEST_CODE)
+
                     } else {
                         Log.d(TAG, "사용자가 거절했습니다.")
                         showDialogToGetPermission()
