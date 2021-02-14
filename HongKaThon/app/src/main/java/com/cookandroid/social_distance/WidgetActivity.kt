@@ -1,14 +1,10 @@
 package com.cookandroid.social_distance
 
-import android.app.Activity
 import android.appwidget.AppWidgetManager
 import android.content.Intent
 import android.view.*
-import android.widget.Toast
 import androidx.databinding.ViewDataBinding
-import androidx.recyclerview.selection.*
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
 import com.cookandroid.social_distance.base.BaseActivity
 import com.cookandroid.social_distance.base.BaseAdapter
 import com.cookandroid.social_distance.base.BaseHolder
