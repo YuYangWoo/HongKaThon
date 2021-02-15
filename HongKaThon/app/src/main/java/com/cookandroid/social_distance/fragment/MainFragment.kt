@@ -1,6 +1,8 @@
 package com.cookandroid.social_distance.fragment
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
@@ -14,11 +16,11 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.cookandroid.social_distance.singleton.AreaFactory
 import com.cookandroid.social_distance.R
 import com.cookandroid.social_distance.adapter.AreaAdapter
 import com.cookandroid.social_distance.base.BaseFragment
 import com.cookandroid.social_distance.databinding.FragmentMainBinding
+import com.cookandroid.social_distance.dialog.ProgressDialog
 import com.cookandroid.social_distance.gps.GpsTracker
 import com.cookandroid.social_distance.item.AreaItem
 import com.cookandroid.social_distance.singleton.CoronaData
@@ -33,6 +35,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
     private lateinit var callback: OnBackPressedCallback
     private var database: FirebaseDatabase = FirebaseDatabase.getInstance()
     var areaList = ArrayList<AreaItem>()
+    private val dialog by lazy { ProgressDialog(requireContext()) }
 
     // 마지막으로 뒤로가기 버튼을 눌렀던 시간 저장
     private var backKeyPressedTime: Long = 0
@@ -41,7 +44,12 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
     private lateinit var toast: Toast
     override fun init() {
         super.init()
+        adjust()
+        setRecyclerView()
+    }
 
+    // 지역, 단계 크기 조정
+    private fun adjust() {
         with(binding.address) {
             gpsTracker = GpsTracker(requireContext()) //객체 생성
             val address = "현재 계신 곳은 ${gpsTracker.getArea().korean}\n거리두기 지침은 ${
@@ -68,7 +76,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
             }
             text = sps
         }
-        setRecyclerView()
     }
 
     // 리사이클러뷰 adapt
@@ -79,6 +86,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
                 // 파이어베이스 데이터베이스의 데이터를 받아오는 곳
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
+
                     areaList.clear()
                     val list = ArrayList<AreaItem>()
                     for (snapshot in dataSnapshot.children) { // 반복문으로 데이터 List를 추출해냄
