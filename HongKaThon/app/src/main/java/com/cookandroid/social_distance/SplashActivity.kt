@@ -16,8 +16,7 @@ import com.cookandroid.social_distance.singleton.AreaFactory
 
 
 class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_splash) {
-    private val splashTime: Long = 2000
-    var areraItem = AreaFactory.areaList
+    private val splashTime: Long = 1000
 
     override fun init() {
         super.init()
