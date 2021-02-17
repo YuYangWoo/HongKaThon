@@ -23,6 +23,7 @@ class RegionInformationWidget : AppWidgetProvider() {
         when(intent.action) {
             ACTION_REGION_INFORMATION_WIDGET_REFRESH -> {
                 val ids = AppWidgetManager.getInstance(context).getAppWidgetIds(ComponentName(context, RegionInformationWidget::class.java))
+                CoronaData.refreshInfection()
                 update(context, AppWidgetManager.getInstance(context), ids)
             }
         }

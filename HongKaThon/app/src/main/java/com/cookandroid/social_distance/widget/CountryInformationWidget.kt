@@ -23,8 +23,8 @@ class CountryInformationWidget : AppWidgetProvider() {
         super.onReceive(context, intent)
         when (intent.action) {
             ACTION_COUNTRY_INFORMATION_WIDGET_UPDATE -> {
-                val ids = AppWidgetManager.getInstance(context)
-                    .getAppWidgetIds(ComponentName(context, CountryInformationWidget::class.java))
+                val ids = AppWidgetManager.getInstance(context).getAppWidgetIds(ComponentName(context, CountryInformationWidget::class.java))
+                CoronaData.refreshCountry()
                 update(context, AppWidgetManager.getInstance(context), ids)
             }
         }
