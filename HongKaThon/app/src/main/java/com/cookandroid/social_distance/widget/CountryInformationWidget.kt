@@ -26,6 +26,12 @@ class CountryInformationWidget : AppWidgetProvider() {
                 val ids = AppWidgetManager.getInstance(context).getAppWidgetIds(ComponentName(context, CountryInformationWidget::class.java))
                 CoronaData.refreshCountry()
                 update(context, AppWidgetManager.getInstance(context), ids)
+                Toast.makeText(context, "새로고침", Toast.LENGTH_LONG).show()
+            }
+            else -> {
+                val ids = AppWidgetManager.getInstance(context).getAppWidgetIds(ComponentName(context, CountryInformationWidget::class.java))
+                CoronaData.refreshCountry()
+                update(context, AppWidgetManager.getInstance(context), ids)
             }
         }
     }

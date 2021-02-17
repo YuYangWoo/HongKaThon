@@ -24,6 +24,14 @@ class RegionInformationWidget : AppWidgetProvider() {
             ACTION_REGION_INFORMATION_WIDGET_REFRESH -> {
                 val ids = AppWidgetManager.getInstance(context).getAppWidgetIds(ComponentName(context, RegionInformationWidget::class.java))
                 CoronaData.refreshInfection()
+                CoronaData.refreshLevel()
+                update(context, AppWidgetManager.getInstance(context), ids)
+                Toast.makeText(context, "새로고침", Toast.LENGTH_LONG).show()
+            }
+            else -> {
+                val ids = AppWidgetManager.getInstance(context).getAppWidgetIds(ComponentName(context, RegionInformationWidget::class.java))
+                CoronaData.refreshInfection()
+                CoronaData.refreshLevel()
                 update(context, AppWidgetManager.getInstance(context), ids)
             }
         }

@@ -123,6 +123,6 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@null"
-        android:src="@drawable/ic_refresh"
-        android:contentDescription="@string/refresh" />
+        android:contentDescription="@string/refresh"
+        android:src="@drawable/ic_refresh" />
 </LinearLayout>
